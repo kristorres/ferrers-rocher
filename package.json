@@ -9,7 +9,6 @@
   },
   "devDependencies": {
     "@axel669/rollup-html": "^0.1.0",
-    "@axel669/teascript": "^0.22.13",
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.1",
     "fs-extra": "^10.0.0",

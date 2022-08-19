@@ -1,6 +1,10 @@
 <script>
     import {AppStyle, Baseline as baseline} from "svelte-doric"
-    import {LightTheme as theme} from "svelte-doric/theme"
+
+    import Dashboard from "./comp/dashboard.svelte"
+    import theme from "./state/theme.mjs"
 </script>
 
-<AppStyle {baseline} {theme} />
+<AppStyle {baseline} theme={$theme} />
+
+<Dashboard />
