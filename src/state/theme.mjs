@@ -1,5 +1,8 @@
 import {derived, writable} from "svelte/store"
-import {DarkTheme, LightTheme, TronTheme} from "svelte-doric/theme"
+import {TronTheme} from "svelte-doric/theme"
+
+import DarkTheme from "../theme/dark.svelte"
+import LightTheme from "../theme/light.svelte"
 
 const themeMap = {
     light: LightTheme,
