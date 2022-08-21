@@ -1,5 +1,5 @@
 <script>
-    import {Adornment, TitleBar} from "svelte-doric"
+    import {Adornment, AppBar} from "svelte-doric"
 
     import ThemeSelector from "./theme-selector.svelte"
     import {themeName} from "../state/theme.mjs"
@@ -12,11 +12,11 @@
 </script>
 
 <app-layout style="--color-scheme: {colorScheme};">
-    <TitleBar sticky>
+    <AppBar>
         Ferrers
 
         <Adornment slot="action">
             <ThemeSelector bind:theme />
         </Adornment>
-    </TitleBar>
+    </AppBar>
 </app-layout>
