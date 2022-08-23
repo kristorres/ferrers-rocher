@@ -8,7 +8,7 @@
         TextInput,
     } from "svelte-doric"
 
-    import ThemeSelector from "./theme-selector.svelte"
+    import ThemePicker from "./theme-picker.svelte"
     import {themeName} from "../state/theme.mjs"
 
     const bijectionOptions = [
@@ -95,7 +95,7 @@
         Ferrers
 
         <Adornment slot="action">
-            <ThemeSelector bind:theme />
+            <ThemePicker bind:theme />
         </Adornment>
     </AppBar>
 
