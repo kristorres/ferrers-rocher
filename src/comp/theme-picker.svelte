@@ -1,7 +1,36 @@
+<script context="module">
+    import {derived, writable} from "svelte/store"
+    import {TronTheme} from "svelte-doric/theme"
+
+    import DarkTheme from "../theme/dark.svelte"
+    import LightTheme from "../theme/light.svelte"
+
+    const themeMap = {
+        light: LightTheme,
+        dark: DarkTheme,
+        tron: TronTheme,
+    }
+
+    const currentThemeKey = writable(localStorage.theme ?? "light")
+
+    const theme = derived(
+        currentThemeKey,
+        (key) => themeMap[key]
+    )
+
+    currentThemeKey.subscribe(
+        (key) => {
+            localStorage.theme = key
+        }
+    )
+
+    export {
+        theme,
+    }
+</script>
+
 <script>
     import {Select, Text} from "svelte-doric"
-
-    import {themeName} from "../state/theme.mjs"
 
     const iconMap = {
         light: "sun",
@@ -15,7 +44,7 @@
         {label: "Tron", icon: "laptop", value: "tron"},
     ]
 
-    $: icon = iconMap[$themeName]
+    $: icon = iconMap[$currentThemeKey]
 </script>
 
 <Select
@@ -23,7 +52,7 @@
     label="Theme"
     {icon}
     options={themes}
-    bind:value={$themeName}
+    bind:value={$currentThemeKey}
 >
     <Text slot="selected"></Text>
 </Select>

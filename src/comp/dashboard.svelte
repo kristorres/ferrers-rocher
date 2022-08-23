@@ -9,7 +9,6 @@
     } from "svelte-doric"
 
     import ThemePicker from "./theme-picker.svelte"
-    import {themeName} from "../state/theme.mjs"
 
     const bijectionOptions = [
         {
@@ -45,14 +44,8 @@
         },
     ]
 
-    let theme = null
-
     let sizeString = ""
     let bijection = bijectionOptions[0].value
-
-    $: colorScheme = ($themeName === "light")
-        ? "light"
-        : "dark"
 
     $: size = parseInt(sizeString, 10)
     $: inputIsValid = (size >= 1 && bijection.validateSize(size) === true)
@@ -90,12 +83,12 @@
     }
 </style>
 
-<dashboard-layout style="--color-scheme: {colorScheme};">
+<dashboard-layout>
     <AppBar>
         Ferrers
 
         <Adornment slot="action">
-            <ThemePicker bind:theme />
+            <ThemePicker />
         </Adornment>
     </AppBar>
 
