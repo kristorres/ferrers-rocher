@@ -3,6 +3,7 @@
         Adornment,
         AppBar,
         Button,
+        Screen,
         Select,
         Text,
         TextInput,
@@ -52,17 +53,10 @@
 </script>
 
 <style>
-    dashboard-layout {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
     main {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        overflow-y: scroll;
         height: 100%;
+        padding: 32px 0;
     }
     partition-form {
         display: flex;
@@ -70,8 +64,9 @@
         gap: 16px;
         width: 100%;
         padding: 8px;
+        margin: 0 auto;
     }
-    description {
+    description-area {
         width: 100%;
         height: 36px;
     }
@@ -83,8 +78,8 @@
     }
 </style>
 
-<dashboard-layout>
-    <AppBar>
+<Screen>
+    <AppBar fixed slot="title">
         Ferrers
 
         <Adornment slot="action">
@@ -108,9 +103,9 @@
                 bind:value={bijection}
                 options={bijectionOptions}
             />
-            <description>
+            <description-area>
                 <Text>{bijection.description}</Text>
-            </description>
+            </description-area>
 
             <Button
                 variant="fill"
@@ -121,4 +116,4 @@
             </Button>
         </partition-form>
     </main>
-</dashboard-layout>
+</Screen>

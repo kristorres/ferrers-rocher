@@ -1,6 +1,5 @@
 <script>
-    import {css} from "svelte-doric"
-    import {DarkTheme} from "svelte-doric/theme"
+    import {DarkTheme, css} from "svelte-doric"
 
     const custom = css`
         body {

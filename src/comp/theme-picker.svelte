@@ -1,6 +1,6 @@
 <script context="module">
     import {derived, writable} from "svelte/store"
-    import {TronTheme} from "svelte-doric/theme"
+    import {TronTheme} from "svelte-doric"
 
     import DarkTheme from "../theme/dark.svelte"
     import LightTheme from "../theme/light.svelte"

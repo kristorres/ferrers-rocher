@@ -1,6 +1,5 @@
 <script>
-    import {css} from "svelte-doric"
-    import {LightTheme} from "svelte-doric/theme"
+    import {LightTheme, css} from "svelte-doric"
 
     const custom = css`
         body {
