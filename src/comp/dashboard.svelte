@@ -3,6 +3,8 @@
         Adornment,
         AppBar,
         Button,
+        Flex,
+        Paper,
         Screen,
         Select,
         Text,
@@ -53,17 +55,8 @@
 </script>
 
 <style>
-    main {
-        overflow-y: scroll;
-        height: 100%;
-        padding: 32px 0;
-    }
     partition-form {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
         width: 100%;
-        padding: 8px;
         margin: 0 auto;
     }
     description-area {
@@ -87,33 +80,37 @@
         </Adornment>
     </AppBar>
 
-    <main>
-        <partition-form>
-            <TextInput
-                label="Size (n)"
-                variant="outline"
-                type="number"
-                min={1}
-                bind:value={sizeString}
-            />
-            <Select
-                label="Bijection"
-                variant="outline"
-                color="primary"
-                bind:value={bijection}
-                options={bijectionOptions}
-            />
-            <description-area>
-                <Text>{bijection.description}</Text>
-            </description-area>
+    <Paper square card>
+        <Flex padding="16px" scrollable>
+            <partition-form>
+                <Flex gap="16px" padding="0px">
+                    <TextInput
+                        label="Size (n)"
+                        variant="outline"
+                        type="number"
+                        min={1}
+                        bind:value={sizeString}
+                    />
+                    <Select
+                        label="Bijection"
+                        variant="outline"
+                        color="primary"
+                        bind:value={bijection}
+                        options={bijectionOptions}
+                    />
+                    <description-area>
+                        <Text>{bijection.description}</Text>
+                    </description-area>
 
-            <Button
-                variant="fill"
-                color="primary"
-                disabled={inputIsValid === false}
-            >
-                ANIMATE
-            </Button>
-        </partition-form>
-    </main>
+                    <Button
+                        variant="fill"
+                        color="primary"
+                        disabled={inputIsValid === false}
+                    >
+                        ANIMATE
+                    </Button>
+                </Flex>
+            </partition-form>
+        </Flex>
+    </Paper>
 </Screen>
