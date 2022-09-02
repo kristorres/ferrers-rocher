@@ -9,53 +9,69 @@
         Select,
         Text,
         TextInput,
+        dialog,
     } from "svelte-doric"
 
+    import BijectionModal from "./bijection-modal.svelte"
     import ThemePicker from "./theme-picker.svelte"
 
-    const bijectionOptions = [
+    const bijections = [
         {
-            label: "Strike-slip",
-            value: {
-                description: "Works on most partitions.",
-                validateSize: (n) => true,
-            },
+            name: "Strike-slip",
+            description: "Works on most partitions.",
+            allowSize: (n) => true,
         },
         {
-            label: "Shred-and-stretch",
-            value: {
-                description: "Even partition ↦ Even partition",
-                validateSize: (n) => n % 2 === 0,
-            },
+            name: "Shred-and-stretch",
+            description: "Even partition ↦ Even partition",
+            allowSize: (n) => n % 2 === 0,
         },
         {
-            label: "Cut-and-stretch",
-            value: {
-                description: [
-                    "Self-conjugate partition",
-                    "Partition with distinct odd parts",
-                ].join(" ↦ "),
-                validateSize: (n) => n !== 2,
-            },
+            name: "Cut-and-stretch",
+            description: [
+                "Self-conjugate partition",
+                "Partition with distinct odd parts",
+            ].join(" ↦ "),
+            allowSize: (n) => n !== 2,
         },
         {
-            label: "Sylvester/Glaisher",
-            value: {
-                description: "Odd partition ↦ Partition with distinct parts",
-                validateSize: (n) => true,
-            },
+            name: "Sylvester/Glaisher",
+            description: "Odd partition ↦ Partition with distinct parts",
+            allowSize: (n) => true,
         },
     ]
+
+    const bijectionOptions = bijections.map(
+        (bijection) => {
+            const {name} = bijection
+
+            return {
+                label: name,
+                value: bijection,
+            }
+        }
+    )
 
     let sizeString = ""
     let bijection = bijectionOptions[0].value
 
+    async function animateBijection() {
+        document.activeElement.blur()
+        await dialog.show(
+            BijectionModal,
+            {
+                bijection,
+                persistent: true,
+            }
+        )
+    }
+
     $: size = parseInt(sizeString, 10)
-    $: inputIsValid = (size >= 1 && bijection.validateSize(size) === true)
+    $: inputIsValid = (size >= 1 && bijection.allowSize(size) === true)
 </script>
 
 <style>
-    partition-form {
+    bijection-form {
         width: 100%;
         margin: 0 auto;
     }
@@ -65,7 +81,7 @@
     }
 
     @media (min-width: 360px) {
-        partition-form {
+        bijection-form {
             width: 360px;
         }
     }
@@ -82,7 +98,7 @@
 
     <Paper square card>
         <Flex padding="16px" scrollable>
-            <partition-form>
+            <bijection-form>
                 <Flex gap="16px" padding="0px">
                     <TextInput
                         label="Size (n)"
@@ -105,12 +121,13 @@
                     <Button
                         variant="fill"
                         color="primary"
+                        on:tap={animateBijection}
                         disabled={inputIsValid === false}
                     >
                         ANIMATE
                     </Button>
                 </Flex>
-            </partition-form>
+            </bijection-form>
         </Flex>
     </Paper>
 </Screen>
