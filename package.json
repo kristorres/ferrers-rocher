@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@axel669/array-sort": "^0.1.0",
     "svelte": "^3.44.2",
     "svelte-doric": "^1.7.10"
   },
