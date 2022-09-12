@@ -2,7 +2,7 @@ import sort from "@axel669/array-sort"
 
 import {Err} from "../comm/safe.mjs"
 
-const {PI: π, floor, log, random, sqrt} = Math
+const {PI: π, floor, log, sqrt} = Math
 
 const restrictions = {
     none: {
@@ -36,10 +36,10 @@ function invalidRestrictionError(type) {
 
 function isPositiveInteger(n) {
     return (
-        typeof n !== "number"
-        || isNaN(n) === true
-        || Number.isInteger(n) === false
-        || n <= 0
+        typeof n === "number"
+        && isNaN(n) === false
+        && Number.isInteger(n) === true
+        && n > 0
     )
 }
 
@@ -64,7 +64,7 @@ function random(n, partRestriction = "none") {
 
     while (true) {
         for (let i = 1; i <= n; i += 1) {
-            const U = random()
+            const U = Math.random()
 
             if (restriction.allowPart(i) === true && U > 0) {
                 const Zᵢ = floor((-sqrt(6 * n) * log(U)) / (π * i))
@@ -109,7 +109,7 @@ function randomWithDistinctParts(n, partRestriction = "none") {
         let largestPartAllowed = n
 
         while (largestPartAllowed > 0) {
-            const part = floor(random() * largestPartAllowed) + 1
+            const part = floor(Math.random() * largestPartAllowed) + 1
 
             if (restriction.allowPart(part) === true) {
                 λ.push(part)
@@ -141,7 +141,7 @@ function randomSelfConjugate(n) {
 
     const μ = []
 
-    for (let i = 0; i < n; i += 1) {
+    for (let i = 0; i < λ.length; i += 1) {
         const minor = floor(λ[i] / 2)
         const major = λ[i] - minor
 
