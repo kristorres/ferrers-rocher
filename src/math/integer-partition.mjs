@@ -2,10 +2,10 @@ import sort from "@axel669/array-sort"
 
 import {Err} from "../comm/safe.mjs"
 
-const {PI: π, floor, log, sqrt} = Math
+const {PI: π, floor, log, random, sqrt} = Math
 
-const restrictions = {
-    none: {
+const partitionPolicies = {
+    unrestricted: {
         allowPart: (part) => true,
         allowSize: (n) => true,
         allowSizeForDistinctParts: (n) => true,
@@ -22,12 +22,12 @@ const restrictions = {
     },
 }
 
-function invalidRestrictionError(type) {
+function invalidPartitionPolicyError(name) {
     const validValues = Object.keys(restrictions).map(
         (value) => `"${value}"`
     )
     const message = [
-        `Invalid restriction: "${type}"`,
+        `Invalid policy: "${name}"`,
         `(must be one of the following: ${validValues.join(", ")}).`,
     ].join(" ")
 
@@ -47,30 +47,32 @@ function partsAreDistinct(λ) {
     return λ.length === (new Set(λ)).size
 }
 
-function random(n, partRestriction = "none") {
+function randomByFristedt(n, policy = "unrestricted", maxIterationCount = 1e4) {
     if (isPositiveInteger(n) === false) {
         return new Error("n is not a positive integer.")
     }
 
-    const restriction = restrictions[partRestriction]
-    if (restriction === undefined) {
-        return invalidRestrictionError(partRestriction)
+    const partitionPolicy = partitionPolicies[policy]
+    if (partitionPolicy === undefined) {
+        return invalidPartitionPolicyError(policy)
     }
-    if (restriction.allowSize(n) === false) {
-        return new Error(`Invalid value for n due to restriction: ${n}.`)
+    if (partitionPolicy.allowSize(n) === false) {
+        return new Error(`Invalid value for n due to policy: ${n}.`)
     }
 
-    let λ = []
+    if (isPositiveInteger(maxIterationCount) === false) {
+        return new Error("maxIterationCount is not a positive integer.")
+    }
 
-    while (true) {
-        for (let i = 1; i <= n; i += 1) {
-            const U = Math.random()
+    for (let i = 0; i < maxIterationCount; i += 1) {
+        let λ = []
 
-            if (restriction.allowPart(i) === true && U > 0) {
-                const Zᵢ = floor((-sqrt(6 * n) * log(U)) / (π * i))
-                for (let j = 0; j < Zᵢ; j += 1) {
-                    λ.push(i)
-                }
+        for (let k = 1; k <= n; k += 1) {
+            const U = random()
+
+            if (partitionPolicy.allowPart(k) === true && U > 0) {
+                const Zₖ = floor((-sqrt(6 * n) * log(U)) / (π * k))
+                λ = [...λ, ...Array(Zₖ).fill(k)]
             }
         }
 
@@ -79,62 +81,64 @@ function random(n, partRestriction = "none") {
             0
         )
         if (size === n) {
-            break
+            λ.reverse()
+            return λ
         }
-
-        λ = []
     }
 
-    λ.reverse()
-
-    return λ
+    return new Error(`Failed after ${maxIterationCount} iterations.`)
 }
 
-function randomWithDistinctParts(n, partRestriction = "none") {
+function randomWithDistinctParts(
+    n,
+    policy = "unrestricted",
+    maxIterationCount = 1e4
+) {
     if (isPositiveInteger(n) === false) {
         return new Error("n is not a positive integer.")
     }
 
-    const restriction = restrictions[partRestriction]
-    if (restriction === undefined) {
-        return invalidRestrictionError(partRestriction)
+    const partitionPolicy = partitionPolicies[policy]
+    if (partitionPolicy === undefined) {
+        return invalidPartitionPolicyError(policy)
     }
-    if (restriction.allowSizeForDistinctParts(n) === false) {
-        return new Error(`Invalid value for n due to restriction: ${n}.`)
+    if (partitionPolicy.allowSizeForDistinctParts(n) === false) {
+        return new Error(`Invalid value for n due to policy: ${n}.`)
     }
 
-    let λ = []
+    if (isPositiveInteger(maxIterationCount) === false) {
+        return new Error("maxIterationCount is not a positive integer.")
+    }
 
-    while (true) {
+    for (let i = 0; i < maxIterationCount; i += 1) {
+        const λ = []
         let largestPartAllowed = n
 
         while (largestPartAllowed > 0) {
-            const part = floor(Math.random() * largestPartAllowed) + 1
+            const part = floor(random() * largestPartAllowed) + 1
 
-            if (restriction.allowPart(part) === true) {
+            if (partitionPolicy.allowPart(part) === true) {
                 λ.push(part)
                 largestPartAllowed -= part
             }
         }
 
         if (partsAreDistinct(λ) === true) {
-            break
-        }
+            λ.sort(
+                sort.reverse(
+                    sort.number
+                )
+            )
 
-        λ = []
+            return λ
+        }
     }
 
-    λ.sort(
-        sort.reverse(
-            sort.number
-        )
-    )
-
-    return λ
+    return new Error(`Failed after ${maxIterationCount} iterations.`)
 }
 
-function randomSelfConjugate(n) {
-    const λ = randomWithDistinctParts(n, "odd")
+function randomSelfConjugate(n, maxIterationCount = 1e4) {
+    const λ = randomWithDistinctParts(n, "odd", maxIterationCount)
     if (Err(λ) === true) {
         return λ
     }
@@ -161,7 +165,7 @@ function randomSelfConjugate(n) {
 }
 
 const IntegerPartition = {
-    random,
+    randomByFristedt,
     randomSelfConjugate,
     randomWithDistinctParts,
 }
