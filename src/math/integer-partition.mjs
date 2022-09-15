@@ -1,22 +1,20 @@
-import sort from "@axel669/array-sort"
-
 import {Err} from "../comm/safe.mjs"
 
-const {PI: π, floor, log, random, sqrt} = Math
+const {PI: π, exp, floor, log, pow, random, sqrt} = Math
 
 const policies = {
     unrestricted: {
-        allowPart: (part) => true,
+        part: (k) => k,
         allowSize: (n) => true,
         allowSizeForDistinctParts: (n) => true,
     },
     even: {
-        allowPart: (part) => part % 2 === 0,
+        part: (k) => k * 2,
         allowSize: (n) => n % 2 === 0,
         allowSizeForDistinctParts: (n) => n % 2 === 0,
     },
     odd: {
-        allowPart: (part) => part % 2 === 1,
+        part: (k) => k * 2 - 1,
         allowSize: (n) => true,
         allowSizeForDistinctParts: (n) => n !== 2,
     },
@@ -49,10 +47,6 @@ function isPositiveInteger(n) {
         && Number.isInteger(n) === true
         && n > 0
     )
-}
-
-function partsAreDistinct(λ) {
-    return λ.length === (new Set(λ)).size
 }
 
 function validateArgs(args, partsMustBeDistinct = false) {
@@ -95,13 +89,19 @@ function randomByFristedt(n, options = {}) {
     for (let i = 0; i < maxIterationCount; i += 1) {
         let λ = []
 
-        for (let k = 1; k <= n; k += 1) {
+        let partSequenceIndex = 1
+        let k = policy.part(partSequenceIndex)
+
+        while (k <= n) {
             const U = random()
 
-            if (policy.allowPart(k) === true && U > 0) {
+            if (U > 0) {
                 const Zₖ = floor((-sqrt(6 * n) * log(U)) / (π * k))
                 λ = [...λ, ...Array(Zₖ).fill(k)]
             }
+
+            partSequenceIndex += 1
+            k = policy.part(partSequenceIndex)
         }
 
         const size = λ.reduce(
@@ -128,26 +128,32 @@ function randomWithDistinctParts(n, options = {}) {
     const {policy: policyName, maxIterationCount} = modifiedOptions
     const policy = policies[policyName]
 
+    const x = exp(-π / sqrt(12 * n))
+
     for (let i = 0; i < maxIterationCount; i += 1) {
         const λ = []
-        let largestPartAllowed = n
 
-        while (largestPartAllowed > 0) {
-            const part = floor(random() * largestPartAllowed) + 1
+        let partSequenceIndex = 1
+        let k = policy.part(partSequenceIndex)
 
-            if (policy.allowPart(part) === true) {
-                λ.push(part)
-                largestPartAllowed -= part
+        while (k <= n) {
+            const U = random()
+            const p = pow(x, k) / (1 + pow(x, k))
+
+            if (U < p) {
+                λ.push(k)
             }
+
+            partSequenceIndex += 1
+            k = policy.part(partSequenceIndex)
         }
 
-        if (partsAreDistinct(λ) === true) {
-            λ.sort(
-                sort.reverse(
-                    sort.number
-                )
-            )
-
+        const size = λ.reduce(
+            (sum, part) => sum + part,
+            0
+        )
+        if (size === n) {
+            λ.reverse()
             return λ
         }
     }
