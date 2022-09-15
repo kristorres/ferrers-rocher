@@ -4,7 +4,7 @@ import {Err} from "../comm/safe.mjs"
 
 const {PI: π, floor, log, random, sqrt} = Math
 
-const partitionPolicies = {
+const policies = {
     unrestricted: {
         allowPart: (part) => true,
         allowSize: (n) => true,
@@ -22,8 +22,8 @@ const partitionPolicies = {
     },
 }
 
-function invalidPartitionPolicyError(name) {
-    const validValues = Object.keys(restrictions).map(
+function invalidPolicyError(name) {
+    const validValues = Object.keys(policies).map(
         (value) => `"${value}"`
     )
     const message = [
@@ -47,21 +47,41 @@ function partsAreDistinct(λ) {
     return λ.length === (new Set(λ)).size
 }
 
-function randomByFristedt(n, policy = "unrestricted", maxIterationCount = 1e4) {
+function validateArgs(args, partsMustBeDistinct = false) {
+    const {n, policy: policyName, maxIterationCount} = args
+
     if (isPositiveInteger(n) === false) {
         return new Error("n is not a positive integer.")
     }
 
-    const partitionPolicy = partitionPolicies[policy]
-    if (partitionPolicy === undefined) {
-        return invalidPartitionPolicyError(policy)
+    const policy = policies[policyName]
+    if (policy === undefined) {
+        return invalidPolicyError(policyName)
     }
-    if (partitionPolicy.allowSize(n) === false) {
+
+    const allowSize = (partsMustBeDistinct === true)
+        ? policy.allowSizeForDistinctParts
+        : policy.allowSize
+    if (allowSize(n) === false) {
         return new Error(`Invalid value for n due to policy: ${n}.`)
     }
 
     if (isPositiveInteger(maxIterationCount) === false) {
         return new Error("maxIterationCount is not a positive integer.")
+    }
+
+    return null
+}
+
+function randomByFristedt(n, options = {}) {
+    const {
+        policy = "unrestricted",
+        maxIterationCount = 1e4,
+    } = options
+
+    const error = validateArgs({n, ...options})
+    if (error !== null) {
+        return error
     }
 
     for (let i = 0; i < maxIterationCount; i += 1) {
@@ -70,7 +90,7 @@ function randomByFristedt(n, policy = "unrestricted", maxIterationCount = 1e4) {
         for (let k = 1; k <= n; k += 1) {
             const U = random()
 
-            if (partitionPolicy.allowPart(k) === true && U > 0) {
+            if (policies[policy].allowPart(k) === true && U > 0) {
                 const Zₖ = floor((-sqrt(6 * n) * log(U)) / (π * k))
                 λ = [...λ, ...Array(Zₖ).fill(k)]
             }
@@ -89,25 +109,15 @@ function randomByFristedt(n, policy = "unrestricted", maxIterationCount = 1e4) {
     return new Error(`Failed after ${maxIterationCount} iterations.`)
 }
 
-function randomWithDistinctParts(
-    n,
-    policy = "unrestricted",
-    maxIterationCount = 1e4
-) {
-    if (isPositiveInteger(n) === false) {
-        return new Error("n is not a positive integer.")
-    }
+function randomWithDistinctParts(n, options = {}) {
+    const {
+        policy = "unrestricted",
+        maxIterationCount = 1e4,
+    } = options
 
-    const partitionPolicy = partitionPolicies[policy]
-    if (partitionPolicy === undefined) {
-        return invalidPartitionPolicyError(policy)
-    }
-    if (partitionPolicy.allowSizeForDistinctParts(n) === false) {
-        return new Error(`Invalid value for n due to policy: ${n}.`)
-    }
-
-    if (isPositiveInteger(maxIterationCount) === false) {
-        return new Error("maxIterationCount is not a positive integer.")
+    const error = validateArgs({n, ...options}, true)
+    if (error !== null) {
+        return error
     }
 
     for (let i = 0; i < maxIterationCount; i += 1) {
@@ -117,7 +127,7 @@ function randomWithDistinctParts(
         while (largestPartAllowed > 0) {
             const part = floor(random() * largestPartAllowed) + 1
 
-            if (partitionPolicy.allowPart(part) === true) {
+            if (policies[policy].allowPart(part) === true) {
                 λ.push(part)
                 largestPartAllowed -= part
             }
@@ -138,7 +148,7 @@ function randomWithDistinctParts(
 }
 
 function randomSelfConjugate(n, maxIterationCount = 1e4) {
-    const λ = randomWithDistinctParts(n, "odd", maxIterationCount)
+    const λ = randomWithDistinctParts(n, {policy: "odd", maxIterationCount})
     if (Err(λ) === true) {
         return λ
     }
