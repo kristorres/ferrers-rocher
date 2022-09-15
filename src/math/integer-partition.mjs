@@ -22,6 +22,14 @@ const policies = {
     },
 }
 
+function fallback(options) {
+    return {
+        ...options,
+        policy: options.policy ?? "unrestricted",
+        maxIterationCount: options.maxIterationCount ?? 1e4,
+    }
+}
+
 function invalidPolicyError(name) {
     const validValues = Object.keys(policies).map(
         (value) => `"${value}"`
@@ -74,15 +82,15 @@ function validateArgs(args, partsMustBeDistinct = false) {
 }
 
 function randomByFristedt(n, options = {}) {
-    const {
-        policy = "unrestricted",
-        maxIterationCount = 1e4,
-    } = options
+    const modifiedOptions = fallback(options)
 
-    const error = validateArgs({n, ...options})
+    const error = validateArgs({n, ...modifiedOptions})
     if (error !== null) {
         return error
     }
+
+    const {policy: policyName, maxIterationCount} = modifiedOptions
+    const policy = policies[policyName]
 
     for (let i = 0; i < maxIterationCount; i += 1) {
         let λ = []
@@ -90,7 +98,7 @@ function randomByFristedt(n, options = {}) {
         for (let k = 1; k <= n; k += 1) {
             const U = random()
 
-            if (policies[policy].allowPart(k) === true && U > 0) {
+            if (policy.allowPart(k) === true && U > 0) {
                 const Zₖ = floor((-sqrt(6 * n) * log(U)) / (π * k))
                 λ = [...λ, ...Array(Zₖ).fill(k)]
             }
@@ -110,15 +118,15 @@ function randomByFristedt(n, options = {}) {
 }
 
 function randomWithDistinctParts(n, options = {}) {
-    const {
-        policy = "unrestricted",
-        maxIterationCount = 1e4,
-    } = options
+    const modifiedOptions = fallback(options)
 
-    const error = validateArgs({n, ...options}, true)
+    const error = validateArgs({n, ...modifiedOptions}, true)
     if (error !== null) {
         return error
     }
+
+    const {policy: policyName, maxIterationCount} = modifiedOptions
+    const policy = policies[policyName]
 
     for (let i = 0; i < maxIterationCount; i += 1) {
         const λ = []
@@ -127,7 +135,7 @@ function randomWithDistinctParts(n, options = {}) {
         while (largestPartAllowed > 0) {
             const part = floor(random() * largestPartAllowed) + 1
 
-            if (policies[policy].allowPart(part) === true) {
+            if (policy.allowPart(part) === true) {
                 λ.push(part)
                 largestPartAllowed -= part
             }
