@@ -1,5 +1,3 @@
-import {Err} from "../comm/safe.mjs"
-
 const {PI: π, exp, floor, log, pow, random, sqrt} = Math
 
 const policies = {
@@ -20,12 +18,13 @@ const policies = {
     },
 }
 
-function fallback(options) {
-    return {
-        ...options,
-        policy: options.policy ?? "unrestricted",
-        maxIterationCount: options.maxIterationCount ?? 1e4,
-    }
+function isPositiveInteger(n) {
+    return (
+        typeof n === "number"
+        && isNaN(n) === false
+        && Number.isInteger(n) === true
+        && n > 0
+    )
 }
 
 function invalidPolicyError(name) {
@@ -38,15 +37,6 @@ function invalidPolicyError(name) {
     ].join(" ")
 
     return new Error(message)
-}
-
-function isPositiveInteger(n) {
-    return (
-        typeof n === "number"
-        && isNaN(n) === false
-        && Number.isInteger(n) === true
-        && n > 0
-    )
 }
 
 function validateArgs(args, partsMustBeDistinct = false) {
@@ -73,6 +63,14 @@ function validateArgs(args, partsMustBeDistinct = false) {
     }
 
     return null
+}
+
+function fallback(options) {
+    return {
+        ...options,
+        policy: options.policy ?? "unrestricted",
+        maxIterationCount: options.maxIterationCount ?? 1e4,
+    }
 }
 
 function randomByFristedt(n, options = {}) {
@@ -163,7 +161,7 @@ function randomWithDistinctParts(n, options = {}) {
 
 function randomSelfConjugate(n, maxIterationCount = 1e4) {
     const λ = randomWithDistinctParts(n, {policy: "odd", maxIterationCount})
-    if (Err(λ) === true) {
+    if ((λ instanceof Error) === true) {
         return λ
     }
 
@@ -194,4 +192,20 @@ const IntegerPartition = {
     randomWithDistinctParts,
 }
 
-export default IntegerPartition
+onmessage = (event) => {
+    const {name: method, args} = event.data
+    const {n, policy, maxIterationCount = 1e4} = args
+
+    const arg1 = (method === "randomSelfConjugate")
+        ? maxIterationCount
+        : {policy, maxIterationCount}
+
+    const λ = IntegerPartition[method](n, arg1)
+
+    if ((λ instanceof Error) === true) {
+        postMessage({ok: false, error: λ.message})
+        return
+    }
+
+    postMessage({ok: true, partition: λ})
+}
