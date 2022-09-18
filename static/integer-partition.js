@@ -18,6 +18,10 @@ const policies = {
     },
 }
 
+function Err(value) {
+    return value instanceof Error
+}
+
 function isPositiveInteger(n) {
     return (
         typeof n === "number"
@@ -115,6 +119,57 @@ function randomByFristedt(n, options = {}) {
     return new Error(`Failed after ${maxIterationCount} iterations.`)
 }
 
+function randomByPDCDSH(n, options = {}) {
+    const modifiedOptions = fallback(options)
+
+    const error = validateArgs({n, ...modifiedOptions})
+    if (error !== null) {
+        return error
+    }
+
+    const {policy: policyName, maxIterationCount} = modifiedOptions
+    const policy = policies[policyName]
+
+    for (let i = 0; i < maxIterationCount; i += 1) {
+        let λ = []
+
+        let partSequenceIndex = 2
+        let k = policy.part(partSequenceIndex)
+
+        while (k <= n) {
+            const U = random()
+
+            if (U > 0) {
+                const Zₖ = floor((-sqrt(6 * n) * log(U)) / (π * k))
+                λ = [...λ, ...Array(Zₖ).fill(k)]
+            }
+
+            partSequenceIndex += 1
+            k = policy.part(partSequenceIndex)
+        }
+
+        const firstHalfSize = λ.reduce(
+            (sum, part) => sum + part,
+            0
+        )
+        const m = n - firstHalfSize
+        const minPart = policy.part(1)
+        const U = random()
+
+        if (
+            m >= 0
+            && m % minPart === 0
+            && U < exp(-π * m * minPart / sqrt(6 * n))
+        ) {
+            λ = [...Array(m / minPart).fill(minPart), ...λ]
+            λ.reverse()
+            return λ
+        }
+    }
+
+    return new Error(`Failed after ${maxIterationCount} iterations.`)
+}
+
 function randomWithDistinctParts(n, options = {}) {
     const modifiedOptions = fallback(options)
 
@@ -161,7 +216,7 @@ function randomWithDistinctParts(n, options = {}) {
 
 function randomSelfConjugate(n, maxIterationCount = 1e4) {
     const λ = randomWithDistinctParts(n, {policy: "odd", maxIterationCount})
-    if ((λ instanceof Error) === true) {
+    if (Err(λ) === true) {
         return λ
     }
 
@@ -188,6 +243,7 @@ function randomSelfConjugate(n, maxIterationCount = 1e4) {
 
 const IntegerPartition = {
     randomByFristedt,
+    randomByPDCDSH,
     randomSelfConjugate,
     randomWithDistinctParts,
 }
@@ -202,7 +258,7 @@ onmessage = (event) => {
 
     const λ = IntegerPartition[method](n, arg1)
 
-    if ((λ instanceof Error) === true) {
+    if (Err(λ) === true) {
         postMessage({ok: false, error: λ.message})
         return
     }
