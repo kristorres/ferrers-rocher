@@ -1,4 +1,6 @@
 import html from "@axel669/rollup-html"
+import tea from "@axel669/teascript/rollup"
+import svelteTea from "@axel669/teascript/svelte"
 import commonJS from "@rollup/plugin-commonjs"
 import resolve from "@rollup/plugin-node-resolve"
 import del from "rollup-plugin-delete"
@@ -17,7 +19,10 @@ export default {
         del({
             targets: "./build/*",
         }),
-        svelte(),
+        svelte({
+            preprocess: svelteTea,
+        }),
+        tea,
         resolve(),
         commonJS(),
         html({

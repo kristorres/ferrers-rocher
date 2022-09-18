@@ -7,6 +7,15 @@
   resolved "https://registry.yarnpkg.com/@axel669/rollup-html/-/rollup-html-0.1.0.tgz#b6b918cadecda132b3130ae0515833c955262fb2"
   integrity sha512-ugtme3y9ULRpzXhAknDxAqVuv8ulZqefSaVo23c9D+Q0IP0RZJ2WbNpadSN5uTB3Kul4gBGs6ayY5dKu1X2tdg==
 
+"@axel669/teascript@^0.22.13":
+  version "0.22.13"
+  resolved "https://registry.yarnpkg.com/@axel669/teascript/-/teascript-0.22.13.tgz#1a6969e9c2c704e934d3cb64a41a6282660e5dd7"
+  integrity sha512-yLpRv1TvEgcQXaVCkf+rdbaEwWmyiBlXESWN2iXSdWkxX+unE8TsRIN9BTi9rjvehBF9PYnRhHFA0n6u6YALgw==
+  dependencies:
+    fs-extra "^10.0.0"
+    glob "^7.2.0"
+    prettier "^2.5.1"
+
 "@babel/code-frame@^7.10.4":
   version "7.18.6"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.18.6.tgz#3b25d38c89600baa2dcc219edfa88a74eb2c427a"
@@ -356,7 +365,7 @@ glob-parent@^5.1.2:
   dependencies:
     is-glob "^4.0.1"
 
-glob@^7.1.3, glob@^7.1.6:
+glob@^7.1.3, glob@^7.1.6, glob@^7.2.0:
   version "7.2.3"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.2.3.tgz#b8df0fb802bbfa8e89bd1d938b4e16578ed44f2b"
   integrity sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==
@@ -561,6 +570,11 @@ picomatch@^2.2.2, picomatch@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.1.tgz#3ba3833733646d9d3e4995946c1365a67fb07a42"
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
+
+prettier@^2.5.1:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.7.1.tgz#e235806850d057f97bb08368a4f7d899f7760c64"
+  integrity sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==
 
 queue-microtask@^1.2.2:
   version "1.2.3"
