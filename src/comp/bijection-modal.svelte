@@ -1,19 +1,33 @@
 <script>
-    export let bijection
+    export let input
+    export let close
 
     import {onDestroy, onMount} from "svelte"
-    import {DialogContent, Paper, TitleBar} from "svelte-doric"
+    import {
+        Alert,
+        Button,
+        DialogContent,
+        Grid,
+        HexagonSpinner as Spinner,
+        Paper,
+        TitleBar,
+        dialog,
+    } from "svelte-doric"
 
-    import createFerrersDiagram from "../state/ferrers-diagram.mjs"
+    import createFerrersDiagram from "../state/ferrers-diagram.tea"
 
-    const λ = [21, 17, 13, 10, 5, 4, 4, 4, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1]
-    const ferrersDiagram = createFerrersDiagram(λ)
+    const {n, bijection} = input
+
+    const worker = new Worker("integer-partition.js")
 
     const dotRadius = 4
     const latticeUnit = dotRadius * 3
     const offset = dotRadius * 2
 
     let height = window.innerHeight
+
+    let λ = null
+    let ferrersDiagram = null
 
     function dotStyle(dot) {
         return [
@@ -30,17 +44,50 @@
     }
 
     onMount(
-        () => window.addEventListener("resize", updateHeight)
+        () => {
+            window.addEventListener("resize", updateHeight)
+
+            worker.postMessage(bijection.randomPartitionMethod(n))
+
+            worker.onmessage = async (event) => {
+                const result = event.data
+
+                if (result.ok === false) {
+                    close()
+                    await dialog.show(
+                        Alert,
+                        {
+                            title: "Error",
+                            message: result.error,
+                            icon: "triangle-exclamation",
+                            persistent: true,
+                        }
+                    )
+                    return
+                }
+
+                λ = result.partition
+                ferrersDiagram = createFerrersDiagram(λ)
+            }
+        }
     )
 
     onDestroy(
-        () => window.removeEventListener("resize", updateHeight)
+        () => {
+            window.removeEventListener("resize", updateHeight)
+            worker.terminate()
+        }
     )
 </script>
 
 <style>
     board {
         position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 2px solid var(--text-normal);
         overflow: hidden;
     }
     dot {
@@ -61,11 +108,17 @@
         <TitleBar compact slot="title">
             {bijection.name}
         </TitleBar>
-
         <board>
-            {#each $ferrersDiagram as dot}
-                <dot style={dotStyle(dot)} />
-            {/each}
+            {#if ferrersDiagram === null}
+                <Spinner size={240} />
+            {:else}
+                {#each $ferrersDiagram as dot}
+                    <dot style={dotStyle(dot)} />
+                {/each}
+            {/if}
         </board>
+        <Grid cols="1fr" slot="action">
+            <Button color="secondary" on:tap={close}>CLOSE</Button>
+        </Grid>
     </Paper>
 </DialogContent>

@@ -19,12 +19,25 @@
         {
             name: "Strike-slip",
             description: "Works on most partitions.",
-            allowSize: (n) => true,
+            allowPartitionSize: (n) => true,
+            randomPartitionMethod: (n) => ({
+                name: "randomByPDCDSH",
+                args: {
+                    n,
+                },
+            }),
         },
         {
             name: "Shred-and-stretch",
             description: "Even partition ↦ Even partition",
-            allowSize: (n) => n % 2 === 0,
+            allowPartitionSize: (n) => n % 2 === 0,
+            randomPartitionMethod: (n) => ({
+                name: "randomByPDCDSH",
+                args: {
+                    n,
+                    policy: "even",
+                },
+            }),
         },
         {
             name: "Cut-and-stretch",
@@ -32,12 +45,25 @@
                 "Self-conjugate partition",
                 "Partition with distinct odd parts",
             ].join(" ↦ "),
-            allowSize: (n) => n !== 2,
+            allowPartitionSize: (n) => n !== 2,
+            randomPartitionMethod: (n) => ({
+                name: "randomSelfConjugate",
+                args: {
+                    n,
+                },
+            }),
         },
         {
             name: "Sylvester/Glaisher",
             description: "Odd partition ↦ Partition with distinct parts",
-            allowSize: (n) => true,
+            allowPartitionSize: (n) => true,
+            randomPartitionMethod: (n) => ({
+                name: "randomByPDCDSH",
+                args: {
+                    n,
+                    policy: "odd",
+                },
+            }),
         },
     ]
 
@@ -55,19 +81,22 @@
     let sizeString = ""
     let bijection = bijectionOptions[0].value
 
+    $: size = parseInt(sizeString, 10)
+    $: inputIsValid = (size > 0 && bijection.allowPartitionSize(size) === true)
+
     async function animateBijection() {
         document.activeElement.blur()
         await dialog.show(
             BijectionModal,
             {
-                bijection,
+                input: {
+                    n: size,
+                    bijection,
+                },
                 persistent: true,
             }
         )
     }
-
-    $: size = parseInt(sizeString, 10)
-    $: inputIsValid = (size >= 1 && bijection.allowSize(size) === true)
 </script>
 
 <style>
