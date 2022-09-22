@@ -1,6 +1,4 @@
 import html from "@axel669/rollup-html"
-import tea from "@axel669/teascript/rollup"
-import svelteTea from "@axel669/teascript/svelte"
 import commonJS from "@rollup/plugin-commonjs"
 import resolve from "@rollup/plugin-node-resolve"
 import svelte from "rollup-plugin-svelte"
@@ -17,10 +15,7 @@ export default {
         format: "iife",
     },
     plugins: [
-        svelte({
-            preprocess: svelteTea,
-        }),
-        tea,
+        svelte(),
         resolve({
             extensions: [".js", ".svelte"],
         }),
