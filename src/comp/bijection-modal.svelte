@@ -14,7 +14,7 @@
         dialog,
     } from "svelte-doric"
 
-    import createFerrersDiagram from "../state/ferrers-diagram.tea"
+    import createFerrersDiagram from "../state/ferrers-diagram.mjs"
 
     const {n, bijection} = input
 
@@ -30,10 +30,12 @@
     let ferrersDiagram = null
 
     function dotStyle(dot) {
+        const {red, green, blue, alpha} = dot.color
+
         return [
             `top: ${dot.y * latticeUnit + offset}px;`,
             `left: ${dot.x * latticeUnit + offset}px;`,
-            `background-color: ${dot.color};`,
+            `background-color: rgba(${red}, ${green}, ${blue}, ${alpha});`,
             `width: ${dotRadius * 2}px;`,
             `border-radius: ${dotRadius}px;`,
         ].join(" ")
@@ -68,6 +70,7 @@
 
                 λ = result.partition
                 ferrersDiagram = createFerrersDiagram(λ)
+                await bijection.animate(ferrersDiagram)
             }
         }
     )

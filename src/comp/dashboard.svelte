@@ -14,58 +14,7 @@
 
     import BijectionModal from "./bijection-modal.svelte"
     import ThemePicker from "./theme-picker.svelte"
-
-    const bijections = [
-        {
-            name: "Strike-slip",
-            description: "Works on most partitions.",
-            allowPartitionSize: (n) => true,
-            randomPartitionMethod: (n) => ({
-                name: "randomByPDCDSH",
-                args: {
-                    n,
-                },
-            }),
-        },
-        {
-            name: "Shred-and-stretch",
-            description: "Even partition ↦ Even partition",
-            allowPartitionSize: (n) => n % 2 === 0,
-            randomPartitionMethod: (n) => ({
-                name: "randomByPDCDSH",
-                args: {
-                    n,
-                    policy: "even",
-                },
-            }),
-        },
-        {
-            name: "Cut-and-stretch",
-            description: [
-                "Self-conjugate partition",
-                "Partition with distinct odd parts",
-            ].join(" ↦ "),
-            allowPartitionSize: (n) => n !== 2,
-            randomPartitionMethod: (n) => ({
-                name: "randomSelfConjugate",
-                args: {
-                    n,
-                },
-            }),
-        },
-        {
-            name: "Sylvester/Glaisher",
-            description: "Odd partition ↦ Partition with distinct parts",
-            allowPartitionSize: (n) => true,
-            randomPartitionMethod: (n) => ({
-                name: "randomByPDCDSH",
-                args: {
-                    n,
-                    policy: "odd",
-                },
-            }),
-        },
-    ]
+    import bijections from "../bijections.mjs"
 
     const bijectionOptions = bijections.map(
         (bijection) => {
