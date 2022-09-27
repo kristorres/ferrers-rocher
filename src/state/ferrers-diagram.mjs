@@ -1,6 +1,6 @@
 import {tweened} from "svelte/motion"
 
-import Color, {equal} from "../color.mjs"
+import {Palette, equal} from "../color.mjs"
 
 const {floor} = Math
 
@@ -9,14 +9,11 @@ const duration = 1000
 function createFerrersDiagram(λ) {
     const dots = []
     const partCount = λ.length
+    const {foreground} = Palette()
 
     for (let i = 0; i < partCount; i += 1) {
         for (let j = 0; j < λ[i]; j += 1) {
-            dots.push({
-                x: j,
-                y: i,
-                color: Color(128, 128, 128),
-            })
+            dots.push({x: j, y: i, color: foreground})
         }
     }
 

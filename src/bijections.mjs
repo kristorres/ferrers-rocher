@@ -1,6 +1,4 @@
-import Color from "./color.mjs"
-
-const gray = Color(128, 128, 128)
+import {Palette} from "./color.mjs"
 
 const bijections = [
     {
@@ -16,15 +14,14 @@ const bijections = [
         animate: async (ferrersDiagram) => {
             const {cut, move, paste} = ferrersDiagram
 
-            const color1 = Color(126, 48, 177)
-            const color2 = Color(102, 152, 255)
+            const {blue, foreground, red} = Palette()
 
-            await cut(-1, 1, 0, color1, color2)
+            await cut(-1, 1, 0, red, blue)
             await Promise.all([
-                move(color1, 0, 1),
-                move(color2, -1, 0),
+                move(red, 0, 1),
+                move(blue, -1, 0),
             ])
-            await paste(color1, color2, gray)
+            await paste(red, blue, foreground)
         },
     },
     {
@@ -41,18 +38,18 @@ const bijections = [
         animate: async (ferrersDiagram) => {
             const {move, paste, shred, stretch, transpose} = ferrersDiagram
 
-            const color1 = Color(154, 29, 125, 0.5)
-            const color2 = Color(102, 255, 204, 0.5)
+            const {foreground} = Palette()
+            const {blue, red} = Palette(0.75)
 
-            await shred(gray, color1, color2)
-            await move(color1, 1, 0)
+            await shred(foreground, red, blue)
+            await move(red, 1, 0)
             await Promise.all([
-                stretch(color1, 0.5, 0.5),
-                stretch(color2, 0.5, 0.5),
+                stretch(red, 0.5, 0.5),
+                stretch(blue, 0.5, 0.5),
             ])
-            await move(color1, 0, 1)
-            await paste(color1, color2, gray)
-            await transpose(gray)
+            await move(red, 0, 1)
+            await paste(red, blue, foreground)
+            await transpose(foreground)
         },
     },
     {
@@ -71,22 +68,22 @@ const bijections = [
         animate: async (ferrersDiagram) => {
             const {cut, move, paste, shift, stretch, transpose} = ferrersDiagram
 
-            const color1 = Color(168, 32, 133, 0.5)
-            const color2 = Color(73, 146, 184, 0.5)
+            const {foreground} = Palette()
+            const {blue, red} = Palette(0.75)
 
-            await cut(-1, 1, 1, color1, color2)
+            await cut(-1, 1, 1, red, blue)
             await Promise.all([
-                shift(color2, 1, -1, 0, 1),
-                shift(color1, 1, 0, -1, 1),
+                shift(blue, 1, -1, 0, 1),
+                shift(red, 1, 0, -1, 1),
             ])
-            await move(color1, 0, -1)
-            await transpose(color1)
+            await move(red, 0, -1)
+            await transpose(red)
             await Promise.all([
-                stretch(color2, 2, 1),
-                stretch(color1, 2, 1),
+                stretch(blue, 2, 1),
+                stretch(red, 2, 1),
             ])
-            await move(color1, 1, 0)
-            await paste(color1, color2, gray)
+            await move(red, 1, 0)
+            await paste(red, blue, foreground)
         },
     },
     {
@@ -112,59 +109,53 @@ const bijections = [
                 transpose,
             } = ferrersDiagram
 
-            const color1 = Color(204, 204, 1, 0.5)
-            const color2 = Color(167, 0, 0, 0.5)
+            const {foreground} = Palette()
+            const {blue, orange, purple, red} = Palette(0.5)
 
-            const transformComponent1 = async () => {
-                const color1a = Color(50, 51, 255, 0.5)
-                const color1b = Color(1, 204, 52, 0.5)
-
-                await move(color1, -1, 0)
-                await shift(color1, 1, -2, 0, 1)
-                await shred(color1, color1a, color1b)
-                await move(color1a, 1, 0)
+            const transformBlueComponent = async () => {
+                await move(blue, -1, 0)
+                await shift(blue, 1, -2, 0, 1)
+                await shred(blue, blue, purple)
+                await move(blue, 1, 0)
                 await Promise.all([
-                    stretch(color1a, 0.5, 0.5),
-                    stretch(color1b, 0.5, 0.5),
+                    stretch(blue, 0.5, 0.5),
+                    stretch(purple, 0.5, 0.5),
                 ])
-                await move(color1b, 0, 1)
-                await paste(color1a, color1b, color1)
+                await move(purple, 0, 1)
+                await paste(blue, purple, blue)
             }
 
-            const transformComponent2 = async () => {
-                const color2a = Color(204, 0, 0, 0.5)
-                const color2b = Color(52, 255, 204, 0.5)
-
-                await shred(color2, color2a, color2b)
-                await move(color2a, 1, 0)
+            const transformRedComponent = async () => {
+                await shred(red, red, orange)
+                await move(red, 1, 0)
                 await Promise.all([
-                    stretch(color2a, 0.5, 1),
-                    stretch(color2b, 0.5, 1),
+                    stretch(red, 0.5, 1),
+                    stretch(orange, 0.5, 1),
                 ])
-                await move(color2b, 0, -1)
+                await move(orange, 0, -1)
                 await Promise.all([
-                    shift(color2a, 1, 0, -1, 1),
-                    shift(color2b, 1, 0, -1, 1),
+                    shift(red, 1, 0, -1, 1),
+                    shift(orange, 1, 0, -1, 1),
                 ])
                 await Promise.all([
-                    transpose(color2a),
-                    transpose(color2b),
+                    transpose(red),
+                    transpose(orange),
                 ])
                 await Promise.all([
-                    stretch(color2a, 1, 0.5),
-                    stretch(color2b, 1, 0.5),
+                    stretch(red, 1, 0.5),
+                    stretch(orange, 1, 0.5),
                 ])
-                await move(color2b, 0, 1)
-                await paste(color2a, color2b, color2)
+                await move(orange, 0, 1)
+                await paste(red, orange, red)
             }
 
-            await cut(-1, 2, 0, color2, color1)
+            await cut(-1, 2, 0, red, blue)
             await Promise.all([
-                transformComponent1(),
-                transformComponent2(),
+                transformBlueComponent(),
+                transformRedComponent(),
             ])
-            await add(color1, color2)
-            await paste(color1, color2, gray)
+            await add(blue, red)
+            await paste(blue, red, foreground)
         },
     },
 ]
