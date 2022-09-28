@@ -9,6 +9,7 @@
         DialogContent,
         Grid,
         HexagonSpinner as Spinner,
+        Icon,
         Paper,
         TitleBar,
         dialog,
@@ -41,6 +42,18 @@
         ].join(" ")
     }
 
+    function pause(numberOfSeconds) {
+        return new Promise(
+            (resolve) => setTimeout(resolve, numberOfSeconds * 1000)
+        )
+    }
+
+    async function startAnimation() {
+        ferrersDiagram = createFerrersDiagram(λ)
+        await pause(1)
+        await bijection.animate(ferrersDiagram)
+    }
+
     function updateHeight() {
         height = window.innerHeight
     }
@@ -69,8 +82,7 @@
                 }
 
                 λ = result.partition
-                ferrersDiagram = createFerrersDiagram(λ)
-                await bijection.animate(ferrersDiagram)
+                await startAnimation()
             }
         }
     )
@@ -120,8 +132,18 @@
                 {/each}
             {/if}
         </board>
-        <Grid cols="1fr" slot="action">
-            <Button color="secondary" on:tap={close}>CLOSE</Button>
+        <Grid cols="1fr 1fr" slot="action">
+            <Button
+                color="secondary"
+                on:tap={startAnimation}
+                disabled={ferrersDiagram === null}
+            >
+                <Icon name="backward-fast" />
+                RESTART
+            </Button>
+            <Button color="secondary" on:tap={close}>
+                CLOSE
+            </Button>
         </Grid>
     </Paper>
 </DialogContent>

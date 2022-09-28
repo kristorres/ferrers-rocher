@@ -33,7 +33,7 @@
     $: size = parseInt(sizeString, 10)
     $: inputIsValid = (size > 0 && bijection.allowPartitionSize(size) === true)
 
-    async function animateBijection() {
+    async function showBijection() {
         document.activeElement.blur()
         await dialog.show(
             BijectionModal,
@@ -99,10 +99,10 @@
                     <Button
                         variant="fill"
                         color="primary"
-                        on:tap={animateBijection}
+                        on:tap={showBijection}
                         disabled={inputIsValid === false}
                     >
-                        ANIMATE
+                        SHOW BIJECTION
                     </Button>
                 </Flex>
             </bijection-form>
