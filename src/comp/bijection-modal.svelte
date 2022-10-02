@@ -15,7 +15,7 @@
         dialog,
     } from "svelte-doric"
 
-    import createFerrersDiagram from "../state/ferrers-diagram.mjs"
+    import FerrersDiagram from "../state/ferrers-diagram.mjs"
 
     const {n, bijection} = input
 
@@ -49,7 +49,7 @@
     }
 
     async function startAnimation() {
-        ferrersDiagram = createFerrersDiagram(λ)
+        ferrersDiagram = FerrersDiagram(λ)
         await pause(1)
         await bijection.animate(ferrersDiagram)
     }

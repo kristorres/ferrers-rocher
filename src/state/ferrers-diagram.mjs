@@ -6,7 +6,7 @@ const {floor} = Math
 
 const duration = 1000
 
-function createFerrersDiagram(λ) {
+function FerrersDiagram(λ) {
     const dots = []
     const partCount = λ.length
     const {foreground} = Palette()
@@ -214,4 +214,4 @@ function createFerrersDiagram(λ) {
     }
 }
 
-export default createFerrersDiagram
+export default FerrersDiagram
