@@ -8,11 +8,11 @@
         Screen,
         Select,
         Text,
-        TextInput,
         dialog,
     } from "svelte-doric"
 
     import BijectionModal from "./bijection-modal.svelte"
+    import IntegerInput from "./integer-input.svelte"
     import ThemePicker from "./theme-picker.svelte"
     import bijections from "../bijections.mjs"
 
@@ -27,10 +27,9 @@
         }
     )
 
-    let sizeString = ""
+    let size = null
     let bijection = bijectionOptions[0].value
 
-    $: size = parseInt(sizeString, 10)
     $: inputIsValid = (size > 0 && bijection.allowPartitionSize(size) === true)
 
     async function showBijection() {
@@ -78,13 +77,7 @@
         <Flex padding="16px" scrollable>
             <bijection-form>
                 <Flex gap="16px" padding="0px">
-                    <TextInput
-                        label="Size (n)"
-                        variant="outline"
-                        type="number"
-                        min={1}
-                        bind:value={sizeString}
-                    />
+                    <IntegerInput label="Size" bind:value={size} min={1} />
                     <Select
                         label="Bijection"
                         variant="outline"
