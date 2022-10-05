@@ -147,9 +147,9 @@
   integrity sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==
 
 "@types/node@*":
-  version "18.7.18"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.7.18.tgz#633184f55c322e4fb08612307c274ee6d5ed3154"
-  integrity sha512-m+6nTEOadJZuTPkKR/SYK3A2d7FZrgElol9UP1Kae90VVU4a6mxnPuLiIW1m4Cq4gZ/nWb9GrdVXJCoCazDAbg==
+  version "18.8.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.8.2.tgz#17d42c6322d917764dd3d2d3a10d7884925de067"
+  integrity sha512-cRMwIgdDN43GO4xMWAfJAecYn8wV4JbsOGHNfNUIDiuYkUYAR5ec4Rj7IO2SAhFPEfpPtLtUTbbny/TCT7aDwA==
 
 "@types/resolve@1.17.1":
   version "1.17.1"
@@ -705,6 +705,11 @@ svelte-doric@^1.7.10:
   version "1.7.10"
   resolved "https://registry.yarnpkg.com/svelte-doric/-/svelte-doric-1.7.10.tgz#c1da6d678d418bcacc8f803e2e3694825b8eef80"
   integrity sha512-iK7obTLn35yiz8U7zzy9QYEuQDF+wer5BTRD0Wvj8vI6+APJh/v0hV8h2NAywESOihYAD3yFq2wc3vxBu2jU5w==
+
+svelte-range-slider-pips@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/svelte-range-slider-pips/-/svelte-range-slider-pips-2.0.3.tgz#c55224f6d03e59ac2051ee90d834cb2e95e508a4"
+  integrity sha512-43zYhIZtGZywiS0nJPAFDfQipDz8Hs2lpj6gVU8WbC+NSu0Lu8VINHjDazeLpoa9X/3rMlaVGT2lPO2aTfLc6w==
 
 svelte@^3.44.2:
   version "3.50.1"

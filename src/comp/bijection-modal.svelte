@@ -15,15 +15,19 @@
         dialog,
     } from "svelte-doric"
 
+    import {
+        animationSpeed,
+        dotRadius,
+        maxIterationCount,
+    } from "./settings.svelte"
     import FerrersDiagram from "../state/ferrers-diagram.mjs"
 
     const {n, bijection} = input
 
     const worker = new Worker("integer-partition.js")
 
-    const dotRadius = 4
-    const latticeUnit = dotRadius * 3
-    const offset = dotRadius * 2
+    const latticeUnit = $dotRadius * 3
+    const offset = $dotRadius * 2
 
     let height = window.innerHeight
 
@@ -37,8 +41,8 @@
             `top: ${dot.y * latticeUnit + offset}px;`,
             `left: ${dot.x * latticeUnit + offset}px;`,
             `background-color: rgba(${red}, ${green}, ${blue}, ${alpha});`,
-            `width: ${dotRadius * 2}px;`,
-            `border-radius: ${dotRadius}px;`,
+            `width: ${$dotRadius * 2}px;`,
+            `border-radius: ${$dotRadius}px;`,
         ].join(" ")
     }
 
@@ -49,7 +53,8 @@
     }
 
     async function startAnimation() {
-        ferrersDiagram = FerrersDiagram(λ)
+        ferrersDiagram = FerrersDiagram(λ, $animationSpeed)
+
         await pause(1)
         await bijection.animate(ferrersDiagram)
     }
@@ -62,7 +67,9 @@
         () => {
             window.addEventListener("resize", updateHeight)
 
-            worker.postMessage(bijection.randomPartitionMethod(n))
+            worker.postMessage(
+                bijection.randomPartitionMethod(n, $maxIterationCount)
+            )
 
             worker.onmessage = async (event) => {
                 const result = event.data
@@ -103,7 +110,7 @@
         align-items: center;
         justify-content: center;
         border-bottom: 2px solid var(--text-normal);
-        overflow: hidden;
+        overflow: auto;
     }
     dot {
         position: absolute;

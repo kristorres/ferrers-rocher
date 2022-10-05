@@ -4,12 +4,12 @@ import {Palette, equal} from "../color.mjs"
 
 const {floor} = Math
 
-const duration = 1000
-
-function FerrersDiagram(λ) {
+function FerrersDiagram(λ, animationSpeed = 1) {
     const dots = []
     const partCount = λ.length
     const {foreground} = Palette()
+
+    const duration = 1000 / animationSpeed
 
     for (let i = 0; i < partCount; i += 1) {
         for (let j = 0; j < λ[i]; j += 1) {

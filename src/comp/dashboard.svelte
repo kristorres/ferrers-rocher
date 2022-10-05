@@ -4,6 +4,7 @@
         AppBar,
         Button,
         Flex,
+        Icon,
         Paper,
         Screen,
         Select,
@@ -13,7 +14,7 @@
 
     import BijectionModal from "./bijection-modal.svelte"
     import IntegerInput from "./integer-input.svelte"
-    import ThemePicker from "./theme-picker.svelte"
+    import Settings from "./settings.svelte"
     import bijections from "../bijections.mjs"
 
     const bijectionOptions = bijections.map(
@@ -26,6 +27,8 @@
             }
         }
     )
+
+    let navigation = null
 
     let size = null
     let bijection = bijectionOptions[0].value
@@ -44,6 +47,11 @@
                 persistent: true,
             }
         )
+    }
+
+    async function showSettings() {
+        document.activeElement.blur()
+        await navigation.openStack(Settings)
     }
 </script>
 
@@ -64,12 +72,14 @@
     }
 </style>
 
-<Screen>
+<Screen bind:this={navigation}>
     <AppBar fixed slot="title">
         Ferrers
 
         <Adornment slot="action">
-            <ThemePicker />
+            <Button on:tap={showSettings}>
+                <Icon name="gear" />
+            </Button>
         </Adornment>
     </AppBar>
 

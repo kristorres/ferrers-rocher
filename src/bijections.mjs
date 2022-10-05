@@ -5,10 +5,11 @@ const bijections = [
         name: "Strike-slip",
         description: "Works on most partitions.",
         allowPartitionSize: (n) => true,
-        randomPartitionMethod: (n) => ({
+        randomPartitionMethod: (n, maxIterationCount) => ({
             name: "randomByPDCDSH",
             args: {
                 n,
+                maxIterationCount,
             },
         }),
         animate: async (ferrersDiagram) => {
@@ -28,11 +29,12 @@ const bijections = [
         name: "Shred-and-stretch",
         description: "Even partition ↦ Even partition",
         allowPartitionSize: (n) => n % 2 === 0,
-        randomPartitionMethod: (n) => ({
+        randomPartitionMethod: (n, maxIterationCount) => ({
             name: "randomByPDCDSH",
             args: {
                 n,
                 policy: "even",
+                maxIterationCount,
             },
         }),
         animate: async (ferrersDiagram) => {
@@ -59,10 +61,11 @@ const bijections = [
             "Partition with distinct odd parts",
         ].join(" ↦ "),
         allowPartitionSize: (n) => n !== 2,
-        randomPartitionMethod: (n) => ({
+        randomPartitionMethod: (n, maxIterationCount) => ({
             name: "randomSelfConjugate",
             args: {
                 n,
+                maxIterationCount,
             },
         }),
         animate: async (ferrersDiagram) => {
@@ -90,11 +93,12 @@ const bijections = [
         name: "Sylvester/Glaisher",
         description: "Odd partition ↦ Partition with distinct parts",
         allowPartitionSize: (n) => true,
-        randomPartitionMethod: (n) => ({
+        randomPartitionMethod: (n, maxIterationCount) => ({
             name: "randomByPDCDSH",
             args: {
                 n,
                 policy: "odd",
+                maxIterationCount,
             },
         }),
         animate: async (ferrersDiagram) => {

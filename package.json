@@ -5,7 +5,8 @@
   "private": true,
   "dependencies": {
     "svelte": "^3.44.2",
-    "svelte-doric": "^1.7.10"
+    "svelte-doric": "^1.7.10",
+    "svelte-range-slider-pips": "^2.0.3"
   },
   "devDependencies": {
     "@axel669/rollup-html": "^0.1.0",
