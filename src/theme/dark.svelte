@@ -6,6 +6,7 @@
             --background: #003b5c;
 
             --primary: #86d1f2;
+            --primary-light: #b5e4f7;
             --primary-ripple: #86d1f260;
             --secondary: #ffe47d;
             --secondary-ripple: #ffe47d60;

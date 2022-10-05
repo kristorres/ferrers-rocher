@@ -7,7 +7,6 @@
         Alert,
         Button,
         DialogContent,
-        Grid,
         HexagonSpinner as Spinner,
         Icon,
         Paper,
@@ -27,7 +26,7 @@
     const worker = new Worker("integer-partition.js")
 
     const latticeUnit = $dotRadius * 3
-    const offset = $dotRadius * 2
+    const boardMargin = $dotRadius * 2
 
     let height = window.innerHeight
 
@@ -38,8 +37,8 @@
         const {red, green, blue, alpha} = dot.color
 
         return [
-            `top: ${dot.y * latticeUnit + offset}px;`,
-            `left: ${dot.x * latticeUnit + offset}px;`,
+            `top: ${dot.y * latticeUnit}px;`,
+            `left: ${dot.x * latticeUnit}px;`,
             `background-color: rgba(${red}, ${green}, ${blue}, ${alpha});`,
             `width: ${$dotRadius * 2}px;`,
             `border-radius: ${$dotRadius}px;`,
@@ -109,12 +108,19 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        border-bottom: 2px solid var(--text-normal);
         overflow: auto;
     }
     dot {
         position: absolute;
         aspect-ratio: 1;
+    }
+
+    footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4px;
+        border-top: 2px solid var(--text-normal);
+        padding: 4px;
     }
 </style>
 
@@ -130,16 +136,16 @@
         <TitleBar compact slot="title">
             {bijection.name}
         </TitleBar>
-        <board>
+        <board style={`margin: ${boardMargin}px;`}>
             {#if ferrersDiagram === null}
-                <Spinner size={240} />
+                <Spinner size={200} />
             {:else}
                 {#each $ferrersDiagram as dot}
                     <dot style={dotStyle(dot)} />
                 {/each}
             {/if}
         </board>
-        <Grid cols="1fr 1fr" slot="action">
+        <footer slot="action">
             <Button
                 color="secondary"
                 on:tap={startAnimation}
@@ -151,6 +157,6 @@
             <Button color="secondary" on:tap={close}>
                 CLOSE
             </Button>
-        </Grid>
+        </footer>
     </Paper>
 </DialogContent>

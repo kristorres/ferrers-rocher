@@ -19,6 +19,8 @@
         --range-handle-inactive: var(--primary);
         --range-handle-focus: var(--primary);
         --range-handle-border: var(--primary);
+        --range-range: var(--primary-light);
+        --range-range-inactive: var(--primary-light);
         --range-pip-active: var(--text-normal);
         --range-pip-hover: var(--text-normal);
     }
@@ -42,6 +44,7 @@
         {min}
         {max}
         {step}
+        range="min"
         float
         hoverable={disabled === false}
         pips
