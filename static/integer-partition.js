@@ -1,5 +1,7 @@
 const {PI: π, exp, floor, log, pow, random, sqrt} = Math
 
+const numberFormatter = new Intl.NumberFormat("en-US")
+
 const policies = {
     unrestricted: {
         part: (k) => k,
@@ -167,7 +169,9 @@ function randomByPDCDSH(n, options = {}) {
         }
     }
 
-    return new Error(`Failed after ${maxIterationCount} iterations.`)
+    return new Error(
+        `Failed after ${numberFormatter.format(maxIterationCount)} iterations.`
+    )
 }
 
 function randomWithDistinctParts(n, options = {}) {
@@ -211,7 +215,9 @@ function randomWithDistinctParts(n, options = {}) {
         }
     }
 
-    return new Error(`Failed after ${maxIterationCount} iterations.`)
+    return new Error(
+        `Failed after ${numberFormatter.format(maxIterationCount)} iterations.`
+    )
 }
 
 function randomSelfConjugate(n, maxIterationCount = 1e4) {

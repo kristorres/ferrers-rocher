@@ -43,6 +43,8 @@
 
     import Slider from "../control/slider.svelte"
 
+    const numberFormatter = new Intl.NumberFormat("en-US")
+
     const keyIconPairs = [
         ["light", "sun"],
         ["dark", "moon"],
@@ -69,7 +71,7 @@
 
     const maxIterationCountOptions = [1e3, 5e3, 1e4, 5e4, 1e5].map(
         (value) => ({
-            label: `${value}`,
+            label: numberFormatter.format(value),
             value,
         })
     )
