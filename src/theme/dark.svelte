@@ -5,9 +5,9 @@
         body {
             --background: #003b5c;
 
-            --primary: #86d1f2;
+            --primary: #5dbfec;
             --primary-light: #b5e4f7;
-            --primary-ripple: #86d1f260;
+            --primary-ripple: #5dbfec60;
             --secondary: #ffe47d;
             --secondary-ripple: #ffe47d60;
         }

@@ -8,8 +8,8 @@
             --primary: #2774ae;
             --primary-light: #86d1f2;
             --primary-ripple: #2774ae60;
-            --secondary: #ffd100;
-            --secondary-ripple: #ffd10060;
+            --secondary: #ffb81c;
+            --secondary-ripple: #ffb81c60;
         }
     `
 </script>
