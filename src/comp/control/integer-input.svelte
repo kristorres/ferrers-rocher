@@ -107,6 +107,7 @@
 
     input {
         background-color: transparent;
+        font: var(--font);
         font-size: var(--text-size);
         color: var(--text-normal);
         border-width: 0px;
