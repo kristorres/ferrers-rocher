@@ -2,9 +2,9 @@
     import {derived} from "svelte/store"
     import {TronTheme} from "svelte-doric"
 
-    import Storage from "../state/storage.mjs"
-    import DarkTheme from "../theme/dark.svelte"
-    import LightTheme from "../theme/light.svelte"
+    import Storage from "../../state/storage.mjs"
+    import DarkTheme from "../../theme/dark.svelte"
+    import LightTheme from "../../theme/light.svelte"
 
     const animationSpeed = Storage("animationSpeed", 1)
     const dotRadius = Storage("dotRadius", 4)
@@ -41,7 +41,7 @@
         TitleBar,
     } from "svelte-doric"
 
-    import Slider from "./slider.svelte"
+    import Slider from "../control/slider.svelte"
 
     const keyIconPairs = [
         ["light", "sun"],

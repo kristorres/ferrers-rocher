@@ -12,9 +12,9 @@
         dialog,
     } from "svelte-doric"
 
-    import BijectionModal from "./bijection-modal.svelte"
-    import IntegerInput from "./integer-input.svelte"
-    import Settings from "./settings.svelte"
+    import IntegerInput from "./control/integer-input.svelte"
+    import BijectionModal from "./dashboard/bijection-modal.svelte"
+    import Settings from "./dashboard/settings.svelte"
     import bijections from "../bijections.mjs"
 
     const bijectionOptions = bijections.map(
@@ -90,7 +90,6 @@
                     <IntegerInput label="Size" bind:value={size} min={1} />
                     <Select
                         label="Bijection"
-                        variant="outline"
                         color="primary"
                         bind:value={bijection}
                         options={bijectionOptions}
