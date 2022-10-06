@@ -3,6 +3,7 @@
     export let value
     export let min = null
     export let max = null
+    export let placeholder = null
     export let disabled = false
 
     const validInputRegex = /^[-]?\d*$/
@@ -126,6 +127,7 @@
     <input
         type="text"
         value={currentInput}
+        {placeholder}
         on:input={handleInput}
         on:keydown={handleKeyPress}
         bind:this={control}

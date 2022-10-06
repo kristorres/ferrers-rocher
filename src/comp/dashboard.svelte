@@ -87,7 +87,12 @@
         <Flex padding="16px" scrollable>
             <bijection-form>
                 <Flex gap="16px" padding="0px">
-                    <IntegerInput label="Size" bind:value={size} min={1} />
+                    <IntegerInput
+                        label="Size"
+                        bind:value={size}
+                        min={1}
+                        placeholder="n = 1,000"
+                    />
                     <Select
                         label="Bijection"
                         color="primary"
