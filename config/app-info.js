@@ -1,8 +1,9 @@
-import {author, description} from "../package.json"
+import {author, description, homepage} from "../package.json"
 
 export default {
     title: "Ferrers",
     author: author.name,
+    twitter: "@ohayoukris",
     description,
     keywords: [
         "integer partitions",
@@ -11,4 +12,6 @@ export default {
         "web app",
     ],
     themeColor: "#2774ae",
+    icon: "images/ferrers-icon.png",
+    url: homepage,
 }

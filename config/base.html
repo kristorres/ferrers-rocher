@@ -8,12 +8,24 @@
         <meta name="description" content="{: props.description :}" />
         <meta name="keywords" content="{: props.keywords.join(', ') :}" />
 
-        <title>{: props.title :}</title>
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="{: props.twitter :}" />
+        <meta name="twitter:title" content="{: props.title :}" />
+        <meta name="twitter:description" content="{: props.description :}" />
+        <meta name="twitter:image" content="{: props.url :}/{: props.icon :}" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="{: props.title :}" />
+        <meta property="og:description" content="{: props.description :}" />
+        <meta property="og:image" content="{: props.url :}/{: props.icon :}" />
+        <meta property="og:url" content="{: props.url :}" />
 
         <meta name="theme-color" content="{: props.themeColor :}" />
 
+        <title>{: props.title :}</title>
+
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-        <link rel="apple-touch-icon" type="image/png" href="images/logo.png" />
+        <link rel="apple-touch-icon" type="image/png" href="{: props.icon :}" />
 
         {: tags.link :}
     </head>
