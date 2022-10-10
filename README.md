@@ -14,6 +14,8 @@ Ferrers
     </a>
 </p>
 
+![The Ferrers web app animating the Sylvester/Glaisher bijection.](/static/images/ferrers.gif)
+
 **Ferrers** is an interactive web app where users can animate bijections of
 integer partitions with Ferrers diagrams. The web app is primarily aimed at
 applied mathematicians, especially professors and students in the combinatorics
