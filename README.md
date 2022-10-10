@@ -66,3 +66,10 @@ yarn run build-dev
 ```
 
 Now go to *build/index.html* on your favorite browser to view the web app. 😎
+
+Research Papers
+---------------
+
+  * [The Nature of Partition Bijections II: Asymptotic Stability](https://www.math.ucla.edu/~pak/papers/stab5.pdf)
+  * [Probabilistic Divide-and-Conquer: A New Exact Simulation Method, with Integer Partitions as an Example](https://arxiv.org/pdf/1110.3856.pdf)
+  * [Improvements to Exact Boltzmann Sampling Using Probabilistic Divide-and-Conquer and the Recursive Method](https://arxiv.org/pdf/1608.07922.pdf)
