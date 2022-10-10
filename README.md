@@ -1,7 +1,7 @@
 <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="/kristorres/ferrers/raw/main/images/bijection-dark.png"/>
-    <source media="(prefers-color-scheme: light)" srcset="/kristorres/ferrers/raw/main/images/bijection-light.png"/>
-    <img src="/kristorres/ferrers/raw/main/images/bijection-light.png" alt="A bijection between partitions with distinct odd parts and self-conjugate partitions."/>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/kristorres/ferrers/raw/main/images/bijection-dark.png"/>
+    <source media="(prefers-color-scheme: light)" srcset="https://github.com/kristorres/ferrers/raw/main/images/bijection-light.png"/>
+    <img src="https://github.com/kristorres/ferrers/raw/main/images/bijection-light.png" alt="A bijection between partitions with distinct odd parts and self-conjugate partitions."/>
 </picture>
 
 Ferrers
