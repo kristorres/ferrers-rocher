@@ -15,7 +15,7 @@
     import IntegerInput from "./control/integer-input.svelte"
     import BijectionModal from "./dashboard/bijection-modal.svelte"
     import Settings from "./dashboard/settings.svelte"
-    import bijections from "../bijections.mjs"
+    import bijections from "$/bijections.mjs"
 
     const bijectionOptions = bijections.map(
         (bijection) => {

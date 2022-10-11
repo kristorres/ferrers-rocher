@@ -63,8 +63,8 @@ Building and Running Locally
 ```sh
 git clone https://github.com/kristorres/ferrers
 cd ferrers
-yarn install
-yarn run build-dev
+npm install
+npm run build-dev
 ```
 
 Now go to *build/index.html* on your favorite browser to view the web app. 😎

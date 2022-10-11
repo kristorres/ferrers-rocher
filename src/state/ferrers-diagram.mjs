@@ -1,6 +1,6 @@
 import {tweened} from "svelte/motion"
 
-import {Palette, equal} from "../color.mjs"
+import {Palette, equal} from "$/color.mjs"
 
 const {floor} = Math
 

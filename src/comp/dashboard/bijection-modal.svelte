@@ -19,7 +19,7 @@
         dotRadius,
         maxIterationCount,
     } from "./settings.svelte"
-    import FerrersDiagram from "../../state/ferrers-diagram.mjs"
+    import FerrersDiagram from "$/state/ferrers-diagram.mjs"
 
     const {n, bijection} = input
 

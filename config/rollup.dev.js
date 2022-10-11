@@ -1,30 +1,28 @@
-import html from "@axel669/rollup-html"
+import copy from "@axel669/rollup-copy-static"
+import $path from "@axel669/rollup-dollar-path"
+import html from "@axel669/rollup-html-input"
 import commonJS from "@rollup/plugin-commonjs"
 import resolve from "@rollup/plugin-node-resolve"
 import del from "rollup-plugin-delete"
 import svelte from "rollup-plugin-svelte"
 
-import appInfo from "./app-info.js"
-import copy from "./plugins/copy.js"
-
 export default {
-    input: "./src/main.js",
+    input: "src/index.html",
     output: {
-        file: `./build/app-d${Date.now()}.js`,
+        file: `build/app-d${Date.now()}.js`,
         format: "iife",
     },
     plugins: [
+        html(),
         del({
-            targets: "./build/*",
+            targets: "build/*",
+        }),
+        $path({
+            root: "src",
         }),
         svelte(),
         resolve(),
         commonJS(),
-        html({
-            template: "config/base.html",
-            output: "index.html",
-            props: appInfo,
-        }),
-        copy("static", "build"),
+        copy("static"),
     ],
 }
