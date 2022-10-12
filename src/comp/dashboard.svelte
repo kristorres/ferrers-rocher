@@ -74,7 +74,7 @@
 
 <Screen bind:this={navigation}>
     <AppBar fixed slot="title">
-        Ferrers
+        Ferrers Rocher
 
         <Adornment slot="action">
             <Button on:tap={showSettings}>

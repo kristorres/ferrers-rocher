@@ -1,11 +1,11 @@
 <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://kristorres.github.io/ferrers/images/bijection-dark.png"/>
-    <source media="(prefers-color-scheme: light)" srcset="https://kristorres.github.io/ferrers/images/bijection-light.png"/>
-    <img src="https://kristorres.github.io/ferrers/images/bijection-light.png" alt="A bijection between partitions with distinct odd parts and self-conjugate partitions."/>
+    <source media="(prefers-color-scheme: dark)" srcset="https://kristorres.github.io/ferrers-rocher/images/bijection-dark.png"/>
+    <source media="(prefers-color-scheme: light)" srcset="https://kristorres.github.io/ferrers-rocher/images/bijection-light.png"/>
+    <img src="https://kristorres.github.io/ferrers-rocher/images/bijection-light.png" alt="A bijection between partitions with distinct odd parts and self-conjugate partitions."/>
 </picture>
 
-Ferrers
-=======
+Ferrers Rocher
+==============
 
 <p>
     <img src="https://img.shields.io/badge/Svelte-3-orange?style=for-the-badge&logo=svelte"/>
@@ -14,10 +14,10 @@ Ferrers
     </a>
 </p>
 
-![The Ferrers web app animating the Sylvester/Glaisher bijection.](/static/images/ferrers.gif)
+![The Ferrers Rocher web app animating the Sylvester/Glaisher bijection.](/static/images/ferrers-rocher.gif)
 
-**Ferrers** is an interactive web app where users can animate bijections of
-integer partitions with Ferrers diagrams. The web app is primarily aimed at
+**Ferrers Rocher** is an interactive web app where users can animate bijections
+of integer partitions with Ferrers diagrams. The web app is primarily aimed at
 applied mathematicians, especially professors and students in the combinatorics
 and probability fields. However, it is still engaging and fun for people who are
 not into math! 🙂
@@ -35,8 +35,8 @@ in C++ using Qt, but it ultimately became a
 [Java applet](http://kristorres.weebly.com/partitions.html) instead due to time
 constraints.
 
-*Ferrers* is intended to replace that applet, since Java applets were removed
-from Java SE 11 in September 2018.
+*Ferrers Rocher* is intended to replace that applet, since Java applets were
+removed from Java SE 11 in September 2018.
 
 Math Terms: What You Need to Know
 ---------------------------------
@@ -61,8 +61,8 @@ Building and Running Locally
 ----------------------------
 
 ```sh
-git clone https://github.com/kristorres/ferrers
-cd ferrers
+git clone https://github.com/kristorres/ferrers-rocher
+cd ferrers-rocher
 npm install
 npm run build-dev
 ```
