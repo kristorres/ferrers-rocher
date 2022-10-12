@@ -19,6 +19,7 @@ export default {
         }),
         $path({
             root: "src",
+            extensions: [".js", ".mjs", ".svelte"],
         }),
         svelte(),
         resolve(),
