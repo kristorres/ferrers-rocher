@@ -1,6 +1,6 @@
 <script context="module">
     import {derived} from "svelte/store"
-    import {TronTheme} from "svelte-doric"
+    import {Grid, TronTheme} from "svelte-doric"
 
     import Storage from "$/state/storage.mjs"
     import DarkTheme from "$/theme/dark.svelte"
@@ -83,55 +83,42 @@
     }
 </script>
 
-<style>
-    footer {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 4px;
-        background-color: var(--background-layer);
-        border-top: 2px solid var(--text-normal);
-        padding: 4px;
-    }
-</style>
-
 <Screen bind:this={navigation}>
     <TitleBar compact slot="title">
         Settings
     </TitleBar>
-    <Paper square scrollable>
-        <Flex gap="16px" padding="16px">
-            <Select
-                label="Theme"
-                color="primary"
-                bind:value={$themeKey}
-                options={themeOptions}
-            />
-            <Divider />
-            <Slider
-                label="Dot Radius"
-                bind:value={$dotRadius}
-                min={1}
-                max={4}
-                step={0.1}
-            />
-            <Slider
-                label="Animation Speed (step/s)"
-                bind:value={$animationSpeed}
-                min={0.25}
-                max={2}
-                step={0.25}
-            />
-            <Select
-                label="Max # of Iterations"
-                color="primary"
-                bind:value={$maxIterationCount}
-                options={maxIterationCountOptions}
-            />
-        </Flex>
+    <Paper square layout={Flex} lgap="16px" lpadding="16px" lscrollable>
+        <Select
+            label="Theme"
+            color="primary"
+            bind:value={$themeKey}
+            options={themeOptions}
+        />
+        <Divider />
+        <Slider
+            label="Dot Radius"
+            bind:value={$dotRadius}
+            min={1}
+            max={4}
+            step={0.1}
+        />
+        <Slider
+            label="Animation Speed (step/s)"
+            bind:value={$animationSpeed}
+            min={0.25}
+            max={2}
+            step={0.25}
+        />
+        <Select
+            label="Max # of Iterations"
+            color="primary"
+            bind:value={$maxIterationCount}
+            options={maxIterationCountOptions}
+        />
     </Paper>
-    <footer slot="footer">
+    <Paper square flat layout={Grid} lcols="1fr" slot="footer">
         <Button color="secondary" on:tap={close}>
             CLOSE
         </Button>
-    </footer>
+    </Paper>
 </Screen>

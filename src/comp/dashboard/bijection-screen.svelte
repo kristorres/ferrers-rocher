@@ -1,15 +1,16 @@
 <script>
     export let input
-    export let close
 
     import {onDestroy, onMount} from "svelte"
     import {
         Alert,
         Button,
-        DialogContent,
+        Flex,
+        Grid,
         HexagonSpinner as Spinner,
         Icon,
         Paper,
+        Screen,
         TitleBar,
         dialog,
     } from "svelte-doric"
@@ -26,19 +27,23 @@
     const worker = new Worker("integer-partition.js")
 
     const latticeUnit = $dotRadius * 3
-    const boardMargin = $dotRadius * 2
+    const offset = $dotRadius * 2
 
-    let height = window.innerHeight
+    let navigation = null
 
     let λ = null
     let ferrersDiagram = null
+
+    function close() {
+        navigation.close()
+    }
 
     function dotStyle(dot) {
         const {red, green, blue, alpha} = dot.color
 
         return [
-            `top: ${dot.y * latticeUnit}px;`,
-            `left: ${dot.x * latticeUnit}px;`,
+            `top: ${dot.y * latticeUnit + offset}px;`,
+            `left: ${dot.x * latticeUnit + offset}px;`,
             `background-color: rgba(${red}, ${green}, ${blue}, ${alpha});`,
             `width: ${$dotRadius * 2}px;`,
             `border-radius: ${$dotRadius}px;`,
@@ -58,14 +63,8 @@
         await bijection.animate(ferrersDiagram)
     }
 
-    function updateHeight() {
-        height = window.innerHeight
-    }
-
     onMount(
         () => {
-            window.addEventListener("resize", updateHeight)
-
             worker.postMessage(
                 bijection.randomPartitionMethod(n, $maxIterationCount)
             )
@@ -74,7 +73,6 @@
                 const result = event.data
 
                 if (result.ok === false) {
-                    close()
                     await dialog.show(
                         Alert,
                         {
@@ -84,6 +82,7 @@
                             persistent: true,
                         }
                     )
+                    close()
                     return
                 }
 
@@ -94,69 +93,49 @@
     )
 
     onDestroy(
-        () => {
-            window.removeEventListener("resize", updateHeight)
-            worker.terminate()
-        }
+        () => worker.terminate()
     )
 </script>
 
 <style>
     board {
         position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
         overflow: auto;
+        width: 100%;
+        height: 100%;
     }
     dot {
         position: absolute;
         aspect-ratio: 1;
     }
-
-    footer {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4px;
-        border-top: 2px solid var(--text-normal);
-        padding: 4px;
-    }
 </style>
 
-<DialogContent
-    top={`${height / 2}px`}
-    left="50%"
-    originX="50%"
-    originY={`${(height - 8) / 2}px`}
-    width="calc(100vw - 8px)"
-    height={`${height - 8}px`}
->
-    <Paper card>
-        <TitleBar compact slot="title">
-            {bijection.name}
-        </TitleBar>
-        <board style={`margin: ${boardMargin}px;`}>
-            {#if ferrersDiagram === null}
-                <Spinner size={200} />
-            {:else}
+<Screen full bind:this={navigation}>
+    <TitleBar compact slot="title">
+        {bijection.name}
+    </TitleBar>
+    <Paper square layout={Flex} lcenter lpadding="0px">
+        {#if ferrersDiagram === null}
+            <Spinner size={200} />
+        {:else}
+            <board>
                 {#each $ferrersDiagram as dot}
                     <dot style={dotStyle(dot)} />
                 {/each}
-            {/if}
-        </board>
-        <footer slot="action">
-            <Button
-                color="secondary"
-                on:tap={startAnimation}
-                disabled={ferrersDiagram === null}
-            >
-                <Icon name="backward-fast" />
-                RESTART
-            </Button>
-            <Button color="secondary" on:tap={close}>
-                CLOSE
-            </Button>
-        </footer>
+            </board>
+        {/if}
     </Paper>
-</DialogContent>
+    <Paper square flat layout={Grid} lcols="1fr 1fr" slot="footer">
+        <Button
+            color="secondary"
+            on:tap={startAnimation}
+            disabled={ferrersDiagram === null}
+        >
+            <Icon name="backward-fast" />
+            RESTART
+        </Button>
+        <Button color="secondary" on:tap={close}>
+            CLOSE
+        </Button>
+    </Paper>
+</Screen>
