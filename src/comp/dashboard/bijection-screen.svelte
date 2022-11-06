@@ -128,13 +128,13 @@
     <Paper square flat layout={Grid} lcols="1fr 1fr" slot="footer">
         <Button
             color="secondary"
-            on:tap={startAnimation}
+            on:click={startAnimation}
             disabled={ferrersDiagram === null}
         >
             <Icon name="backward-fast" />
             RESTART
         </Button>
-        <Button color="secondary" on:tap={close}>
+        <Button color="secondary" on:click={close}>
             CLOSE
         </Button>
     </Paper>

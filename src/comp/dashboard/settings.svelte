@@ -117,7 +117,7 @@
         />
     </Paper>
     <Paper square flat layout={Grid} lcols="1fr" slot="footer">
-        <Button color="secondary" on:tap={close}>
+        <Button color="secondary" on:click={close}>
             CLOSE
         </Button>
     </Paper>

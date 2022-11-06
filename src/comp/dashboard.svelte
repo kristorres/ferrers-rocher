@@ -69,7 +69,7 @@
         Ferrers Rocher
 
         <Adornment slot="action">
-            <Button on:tap={showSettings}>
+            <Button on:click={showSettings}>
                 <Icon name="gear" />
             </Button>
         </Adornment>
@@ -101,7 +101,7 @@
                 <Button
                     variant="fill"
                     color="primary"
-                    on:tap={showBijection}
+                    on:click={showBijection}
                     disabled={inputIsValid === false}
                 >
                     SHOW BIJECTION
