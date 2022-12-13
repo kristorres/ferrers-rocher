@@ -63,8 +63,8 @@ Building and Running Locally
 ```sh
 git clone https://github.com/kristorres/ferrers-rocher
 cd ferrers-rocher
-npm install
-npm run build-dev
+pnpm install
+pnpm build-dev
 ```
 
 Now go to *build/index.html* on your favorite browser to view the web app. 😎

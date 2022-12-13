@@ -1,4 +1,4 @@
-import {terser} from "rollup-plugin-terser"
+import terser from "@rollup/plugin-terser"
 
 import config from "./rollup.dev.js"
 import {version} from "../package.json"
