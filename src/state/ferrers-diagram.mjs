@@ -4,7 +4,7 @@ import {Palette, equal} from "$/color.mjs"
 
 const {floor} = Math
 
-function FerrersDiagram(λ, animationSpeed = 1) {
+const FerrersDiagram = (λ, animationSpeed = 1) => {
     const dots = []
     const partCount = λ.length
     const {foreground} = Palette()

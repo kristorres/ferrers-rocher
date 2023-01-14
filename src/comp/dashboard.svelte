@@ -32,10 +32,9 @@
     let size = null
     let bijection = bijectionOptions[0].value
 
-    $: inputIsValid = (size > 0 && bijection.allowPartitionSize(size) === true)
-
-    async function showBijection() {
+    const showBijection = async () => {
         document.activeElement.blur()
+
         await navigation.openStack(
             BijectionScreen,
             {
@@ -47,10 +46,13 @@
         )
     }
 
-    async function showSettings() {
+    const showSettings = async () => {
         document.activeElement.blur()
+
         await navigation.openStack(Settings)
     }
+
+    $: inputIsValid = (size > 0 && bijection.allowPartitionSize(size) === true)
 </script>
 
 <style>

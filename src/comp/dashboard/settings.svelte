@@ -78,7 +78,7 @@
 
     let navigation = null
 
-    function close() {
+    const close = () => {
         navigation.close()
     }
 </script>

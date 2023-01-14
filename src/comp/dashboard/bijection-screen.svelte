@@ -34,11 +34,7 @@
     let λ = null
     let ferrersDiagram = null
 
-    function close() {
-        navigation.close()
-    }
-
-    function dotStyle(dot) {
+    const dotStyle = (dot) => {
         const {red, green, blue, alpha} = dot.color
 
         return [
@@ -50,17 +46,21 @@
         ].join(" ")
     }
 
-    function pause(numberOfSeconds) {
+    const pause = (numberOfSeconds) => {
         return new Promise(
             (resolve) => setTimeout(resolve, numberOfSeconds * 1000)
         )
     }
 
-    async function startAnimation() {
+    const startAnimation = async () => {
         ferrersDiagram = FerrersDiagram(λ, $animationSpeed)
 
         await pause(1)
         await bijection.animate(ferrersDiagram)
+    }
+
+    const close = () => {
+        navigation.close()
     }
 
     onMount(

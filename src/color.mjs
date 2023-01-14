@@ -1,8 +1,8 @@
-function Color(red, green, blue, alpha = 1) {
+const Color = (red, green, blue, alpha = 1) => {
     return Object.freeze({red, green, blue, alpha})
 }
 
-function Palette(alpha = 1) {
+const Palette = (alpha = 1) => {
     const color = (red, green, blue) => Color(red, green, blue, alpha)
 
     if (JSON.parse(localStorage.theme) === "light") {
@@ -38,7 +38,7 @@ function Palette(alpha = 1) {
     }
 }
 
-function equal(color1, color2) {
+const equal = (color1, color2) => {
     if (color1 === null && color2 === null) {
         return true
     }

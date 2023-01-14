@@ -1,6 +1,6 @@
 import {writable} from "svelte/store"
 
-function Storage(key, defaultValue) {
+const Storage = (key, defaultValue) => {
     const stringValue = localStorage[key]
     const value = (stringValue === undefined)
         ? defaultValue

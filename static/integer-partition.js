@@ -20,11 +20,11 @@ const policies = {
     },
 }
 
-function Err(value) {
+const Err = (value) => {
     return value instanceof Error
 }
 
-function isPositiveInteger(n) {
+const isPositiveInteger = (n) => {
     return (
         typeof n === "number"
         && isNaN(n) === false
@@ -33,7 +33,7 @@ function isPositiveInteger(n) {
     )
 }
 
-function invalidPolicyError(name) {
+const invalidPolicyError = (name) => {
     const validValues = Object.keys(policies).map(
         (value) => `"${value}"`
     )
@@ -45,7 +45,7 @@ function invalidPolicyError(name) {
     return new Error(message)
 }
 
-function validateArgs(args, partsMustBeDistinct = false) {
+const validateArgs = (args, partsMustBeDistinct = false) => {
     const {n, policy: policyName, maxIterationCount} = args
 
     if (isPositiveInteger(n) === false) {
@@ -71,7 +71,7 @@ function validateArgs(args, partsMustBeDistinct = false) {
     return null
 }
 
-function fallback(options) {
+const fallback = (options) => {
     return {
         ...options,
         policy: options.policy ?? "unrestricted",
@@ -79,7 +79,7 @@ function fallback(options) {
     }
 }
 
-function randomByFristedt(n, options = {}) {
+const randomByFristedt = (n, options = {}) => {
     const modifiedOptions = fallback(options)
 
     const error = validateArgs({n, ...modifiedOptions})
@@ -121,7 +121,7 @@ function randomByFristedt(n, options = {}) {
     return new Error(`Failed after ${maxIterationCount} iterations.`)
 }
 
-function randomByPDCDSH(n, options = {}) {
+const randomByPDCDSH = (n, options = {}) => {
     const modifiedOptions = fallback(options)
 
     const error = validateArgs({n, ...modifiedOptions})
@@ -174,7 +174,7 @@ function randomByPDCDSH(n, options = {}) {
     )
 }
 
-function randomWithDistinctParts(n, options = {}) {
+const randomWithDistinctParts = (n, options = {}) => {
     const modifiedOptions = fallback(options)
 
     const error = validateArgs({n, ...modifiedOptions}, true)
@@ -220,7 +220,7 @@ function randomWithDistinctParts(n, options = {}) {
     )
 }
 
-function randomSelfConjugate(n, maxIterationCount = 1e4) {
+const randomSelfConjugate = (n, maxIterationCount = 1e4) => {
     const λ = randomWithDistinctParts(n, {policy: "odd", maxIterationCount})
     if (Err(λ) === true) {
         return λ
