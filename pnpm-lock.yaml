@@ -11,13 +11,13 @@ specifiers:
   rollup-plugin-delete: ^2.0.0
   rollup-plugin-svelte: ^6.1.1
   svelte: ^3.49.0
-  svelte-doric: ^1.9.0
+  svelte-doric: ^1.9.1
   svelte-range-slider-pips: ^2.0.3
 
 dependencies:
-  svelte: 3.54.0
-  svelte-doric: 1.9.0
-  svelte-range-slider-pips: 2.1.0
+  svelte: 3.55.1
+  svelte-doric: 1.9.1
+  svelte-range-slider-pips: 2.1.1
 
 devDependencies:
   '@axel669/rollup-copy-static': 0.1.2
@@ -25,10 +25,10 @@ devDependencies:
   '@axel669/rollup-html-input': 0.1.2
   '@rollup/plugin-commonjs': 17.1.0_rollup@2.79.1
   '@rollup/plugin-node-resolve': 11.2.1_rollup@2.79.1
-  '@rollup/plugin-terser': 0.2.0_rollup@2.79.1
+  '@rollup/plugin-terser': 0.2.1_rollup@2.79.1
   rollup: 2.79.1
   rollup-plugin-delete: 2.0.0
-  rollup-plugin-svelte: 6.1.1_fo5r7zavx7fq3b4xpbbiyq242m
+  rollup-plugin-svelte: 6.1.1_wqqnxzvosiw4srqlri2xb7asou
 
 packages:
 
@@ -104,7 +104,7 @@ packages:
     engines: {node: '>= 8'}
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
-      fastq: 1.14.0
+      fastq: 1.15.0
     dev: true
 
   /@rollup/plugin-commonjs/17.1.0_rollup@2.79.1:
@@ -138,8 +138,8 @@ packages:
       rollup: 2.79.1
     dev: true
 
-  /@rollup/plugin-terser/0.2.0_rollup@2.79.1:
-    resolution: {integrity: sha512-UBr4WNXBFipKW2C2db9JIzIdq9bFZsaTZwKeAd9Y0N9Pv9G2XgRhaimGdotx1+Wf/2XTuTJ+FVS2SO+y2WyiUQ==}
+  /@rollup/plugin-terser/0.2.1_rollup@2.79.1:
+    resolution: {integrity: sha512-hV52c8Oo6/cXZZxVVoRNBb4zh+EKSHS4I1sedWV5pf0O+hTLSkrf6w86/V0AZutYtwBguB6HLKwz89WDBfwGOA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^2.x || ^3.x
@@ -177,21 +177,21 @@ packages:
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
     dependencies:
       '@types/minimatch': 5.1.2
-      '@types/node': 18.11.13
+      '@types/node': 18.11.18
     dev: true
 
   /@types/minimatch/5.1.2:
     resolution: {integrity: sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==}
     dev: true
 
-  /@types/node/18.11.13:
-    resolution: {integrity: sha512-IASpMGVcWpUsx5xBOrxMj7Bl8lqfuTY7FKAnPmu5cHkfQVWF8GulWS1jbRqA934qZL35xh5xN/+Xe/i26Bod4w==}
+  /@types/node/18.11.18:
+    resolution: {integrity: sha512-DHQpWGjyQKSHj3ebjFI/wRKcqQcdR+MoFBygntYOZytCqNfkd2ZC4ARDJ2DQqhjH5p85Nnd3jhUJIXrszFX/JA==}
     dev: true
 
   /@types/resolve/1.17.1:
     resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==}
     dependencies:
-      '@types/node': 18.11.13
+      '@types/node': 18.11.18
     dev: true
 
   /acorn/8.8.1:
@@ -356,8 +356,8 @@ packages:
       micromatch: 4.0.5
     dev: true
 
-  /fastq/1.14.0:
-    resolution: {integrity: sha512-eR2D+V9/ExcbF9ls441yIuN6TI2ED1Y2ZcA5BmMtJsOkWOFRJQ0Jt0g1UwqXJJVAb+V+umH5Dfr8oh4EVP7VVg==}
+  /fastq/1.15.0:
+    resolution: {integrity: sha512-wBrocU2LCXXa+lWBt8RoIRD89Fi8OdABODa/kEnyeyjS5aZO5/GNvI5sEINADqP/h8M29UHTHUb53sUu5Ihqdw==}
     dependencies:
       reusify: 1.0.4
     dev: true
@@ -419,7 +419,7 @@ packages:
       dir-glob: 3.0.1
       fast-glob: 3.2.12
       glob: 7.2.3
-      ignore: 5.2.1
+      ignore: 5.2.4
       merge2: 1.4.1
       slash: 3.0.0
     dev: true
@@ -440,8 +440,8 @@ packages:
     hasBin: true
     dev: true
 
-  /ignore/5.2.1:
-    resolution: {integrity: sha512-d2qQLzTJ9WxQftPAuEQpSPmKqzxePjzVbpAVv62AQ64NTL+wR4JkrVqR/LqFsFEUsHDAiId52mJteHDFuDkElA==}
+  /ignore/5.2.4:
+    resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==}
     engines: {node: '>= 4'}
     dev: true
 
@@ -623,7 +623,7 @@ packages:
       del: 5.1.0
     dev: true
 
-  /rollup-plugin-svelte/6.1.1_fo5r7zavx7fq3b4xpbbiyq242m:
+  /rollup-plugin-svelte/6.1.1_wqqnxzvosiw4srqlri2xb7asou:
     resolution: {integrity: sha512-ijnm0pH1ScrY4uxwaNXBpNVejVzpL2769hIEbAlnqNUWZrffLspu5/k9/l/Wsj3NrEHLQ6wCKGagVJonyfN7ow==}
     peerDependencies:
       rollup: '>=1.19.2'
@@ -633,7 +633,7 @@ packages:
       rollup: 2.79.1
       rollup-pluginutils: 2.8.2
       sourcemap-codec: 1.4.8
-      svelte: 3.54.0
+      svelte: 3.55.1
     dev: true
 
   /rollup-pluginutils/2.8.2:
@@ -697,16 +697,16 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /svelte-doric/1.9.0:
-    resolution: {integrity: sha512-wH1BjnAeSMVfT41rKme4ntChTi6tI4L3D5EPCfb7udJG8sNaGtVvVnsM2eur6p0Oh/8JvF90HDSEviih1ksigw==}
+  /svelte-doric/1.9.1:
+    resolution: {integrity: sha512-E3qf9b+bQ2sae5GbtaCb4O8V2iOThCBlSOOWP2NO1HvOWvLswueKuwBqp5Tw00D1Ui6mYY3dIF/U4OfYYUXdOg==}
     dev: false
 
-  /svelte-range-slider-pips/2.1.0:
-    resolution: {integrity: sha512-WpJQSXo1RG++mIKOkkfmcFho9ngzIBl7fPl0bDzpa6yFTFbxeFUVF5KkUSaiZwzs2SNT3xy6nAUeVLbVQ74JLA==}
+  /svelte-range-slider-pips/2.1.1:
+    resolution: {integrity: sha512-fLkhfnyEc4uMOCZCl8IPyC0e9lujrjqdSyrKw28Y8j99YUPZR+pHnSxde7PqhM0ST6eyO4ugh2nFnLZTIoG9aQ==}
     dev: false
 
-  /svelte/3.54.0:
-    resolution: {integrity: sha512-tdrgeJU0hob0ZWAMoKXkhcxXA7dpTg6lZGxUeko5YqvPdJBiyRspGsCwV27kIrbrqPP2WUoSV9ca0gnLlw8YzQ==}
+  /svelte/3.55.1:
+    resolution: {integrity: sha512-S+87/P0Ve67HxKkEV23iCdAh/SX1xiSfjF1HOglno/YTbSTW7RniICMCofWGdJJbdjw3S+0PfFb1JtGfTXE0oQ==}
     engines: {node: '>= 8'}
 
   /terser/5.16.1:

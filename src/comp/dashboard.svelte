@@ -1,7 +1,6 @@
 <script>
     import {
-        Adornment,
-        AppBar,
+        Appbar,
         Button,
         Flex,
         Icon,
@@ -67,15 +66,13 @@
 </style>
 
 <Screen bind:this={navigation}>
-    <AppBar slot="title">
+    <Appbar slot="title">
         Ferrers Rocher
 
-        <Adornment slot="action">
-            <Button on:click={showSettings}>
-                <Icon name="gear" />
-            </Button>
-        </Adornment>
-    </AppBar>
+        <Button adorn on:click={showSettings} slot="action">
+            <Icon name="gear" />
+        </Button>
+    </Appbar>
 
     <Paper square card layout={Flex} lpadding="16px" lscrollable>
         <bijection-form>
@@ -86,13 +83,10 @@
                     min={1}
                     placeholder="1,000"
                 >
-                    <Adornment slot="start">
-                        <Text adorn>n =</Text>
-                    </Adornment>
+                    <Text adorn slot="start">n =</Text>
                 </IntegerInput>
                 <Select
                     label="Bijection"
-                    color="primary"
                     bind:value={bijection}
                     options={bijectionOptions}
                 />

@@ -5,7 +5,7 @@
   "private": true,
   "dependencies": {
     "svelte": "^3.49.0",
-    "svelte-doric": "^1.9.0",
+    "svelte-doric": "^1.9.1",
     "svelte-range-slider-pips": "^2.0.3"
   },
   "devDependencies": {
@@ -27,10 +27,5 @@
     "name": "Kris Torres",
     "email": "torres-kris@outlook.com",
     "url": "https://kristorres.github.io"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kristorres/ferrers-rocher.git"
-  },
-  "homepage": "https://kristorres.github.io/ferrers-rocher"
+  }
 }

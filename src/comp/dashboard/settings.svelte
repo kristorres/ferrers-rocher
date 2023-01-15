@@ -38,7 +38,7 @@
         Paper,
         Screen,
         Select,
-        TitleBar,
+        Titlebar,
     } from "svelte-doric"
 
     import Slider from "$/comp/control/slider.svelte"
@@ -84,13 +84,12 @@
 </script>
 
 <Screen bind:this={navigation}>
-    <TitleBar compact slot="title">
+    <Titlebar compact slot="title">
         Settings
-    </TitleBar>
+    </Titlebar>
     <Paper square layout={Flex} lgap="16px" lpadding="16px" lscrollable>
         <Select
             label="Theme"
-            color="primary"
             bind:value={$themeKey}
             options={themeOptions}
         />
@@ -111,7 +110,6 @@
         />
         <Select
             label="Max # of Iterations"
-            color="primary"
             bind:value={$maxIterationCount}
             options={maxIterationCountOptions}
         />

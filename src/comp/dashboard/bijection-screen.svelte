@@ -11,7 +11,7 @@
         Icon,
         Paper,
         Screen,
-        TitleBar,
+        Titlebar,
         dialog,
     } from "svelte-doric"
 
@@ -111,9 +111,9 @@
 </style>
 
 <Screen full bind:this={navigation}>
-    <TitleBar compact slot="title">
+    <Titlebar compact slot="title">
         {bijection.name}
-    </TitleBar>
+    </Titlebar>
     <Paper square layout={Flex} lcenter lpadding="0px">
         {#if ferrersDiagram === null}
             <Spinner size={200} />
