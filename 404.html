@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mimosa Not Found | Kris Torres</title>
+
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+
+        <meta name="theme-color" content="#1a64d7" />
+
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:700" />
+
+        <link rel="icon" type="image/png" href="/images/favicon.png" />
+        <link rel="apple-touch-icon" type="image/png" href="/images/ios-icon.png" />
+
+        <style>
+            @font-face {
+                font-family: "American Captain";
+                src: url("/fonts/american-captain.otf");
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+            :root {
+                color-scheme: light dark;
+            }
+            html {
+                width: 100%;
+                height: 100%;
+                margin: 0px;
+                padding: 0px;
+            }
+            body {
+                --neon-magenta: #fe8fbd;
+                --apricot: #fcc89b;
+
+                --primary: #1a64d7;
+                --danger: #f44336;
+
+                --font-title: "American Captain", HelveticaNeue-CondensedBold, sans-serif;
+                --font-subtitle: "Source Sans Pro", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+
+                background-color: #fff0ff;
+                width: 100%;
+                height: 100%;
+                margin: 0px;
+                padding: 0px;
+            }
+
+            h1 {
+                font-family: var(--font-title);
+                font-size: 160px;
+                font-weight: 400;
+                line-height: 1;
+                text-align: center;
+                color: var(--danger);
+                margin: 0px;
+            }
+            h2 {
+                font-family: var(--font-subtitle);
+                font-size: min(10vw, 40px);
+                font-weight: 700;
+                text-align: center;
+                margin: 0px;
+            }
+
+            a {
+                -webkit-text-decoration: underline dotted;
+                text-decoration: underline dotted;
+                color: var(--primary);
+            }
+
+            main {
+                display: grid;
+                grid-template-areas:
+                    "image"
+                    "info"
+                ;
+                gap: 64px;
+                padding: 16px;
+                min-height: 100%;
+            }
+
+            #image-section {
+                grid-area: image;
+                align-self: end;
+                justify-self: center;
+            }
+            .polaroid {
+                background-color: white;
+                padding: 16px;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+                transition: all 0.25s linear;
+            }
+            .polaroid:hover {
+                transform: scale(1.25);
+                box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.75);
+            }
+            img {
+                width: 100%;
+            }
+
+            #info-section {
+                grid-area: info;
+                align-self: start;
+            }
+
+            @media (prefers-color-scheme: dark) {
+                body {
+                    background-color: #160824;
+                }
+                h1 {
+                    color: var(--neon-magenta);
+                }
+                h2 {
+                    color: var(--apricot);
+                }
+                a {
+                    color: white;
+                }
+            }
+            @media (min-width: 975px) {
+                main {
+                    grid-template-columns: 1fr 1fr;
+                    grid-template-areas: "info image";
+                }
+                #image-section {
+                    align-self: center;
+                }
+                #info-section {
+                    align-self: center;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <div id="image-section">
+                <div class="polaroid">
+                    <img src="https://media.tenor.com/ZjGRkH5Nf1UAAAAC/twice-sana.gif" alt="Missing Sana-chan crying meme" title="I’m like TT, just like TT…" />
+                </div>
+            </div>
+            <div id="info-section">
+                <h1>404</h1>
+                <h2>
+                    <a href="https://www.youtube.com/watch?v=kOHB85vDuow">Fancy</a>
+                    a mimosa? Sorry, this page is
+                    <a href="https://www.youtube.com/watch?v=XA2YEHn-A8Q">alcohol‑free</a>!
+                </h2>
+            </div>
+        </main>
+    </body>
+</html>
