@@ -3,6 +3,7 @@
         Appbar,
         Button,
         Flex,
+        Grid,
         Icon,
         Paper,
         Screen,
@@ -56,8 +57,9 @@
 
 <style>
     bijection-form {
+        align-self: center;
+        justify-self: center;
         width: min(100%, 360px);
-        margin: 0 auto;
     }
     description-area {
         width: 100%;
@@ -74,7 +76,7 @@
         </Button>
     </Appbar>
 
-    <Paper square card layout={Flex} lpadding="16px" lscrollable>
+    <Paper square card layout={Grid} lpadding="16px" lscrollable>
         <bijection-form>
             <Flex gap="16px" padding="0px">
                 <IntegerInput
