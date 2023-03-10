@@ -2,6 +2,11 @@
   "name": "ferrers-rocher",
   "description": "A web app that animates bijections of integer partitions.",
   "version": "1.0.0",
+  "author": {
+    "name": "Kris Torres",
+    "email": "torres-kris@outlook.com",
+    "url": "https://kristorres.github.io"
+  },
   "private": true,
   "dependencies": {
     "svelte": "^3.49.0",
@@ -14,18 +19,13 @@
     "@axel669/rollup-html-input": "^0.1.2",
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.1",
-    "@rollup/plugin-terser": "^0.2.0",
+    "@rollup/plugin-terser": "^0.4.0",
     "rollup": "^2.78.1",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-svelte": "^6.1.1"
   },
   "scripts": {
     "build-dev": "rollup -c ./config/rollup.dev.js",
-    "build": "rollup -c ./config/rollup.prod.js"
-  },
-  "author": {
-    "name": "Kris Torres",
-    "email": "torres-kris@outlook.com",
-    "url": "https://kristorres.github.io"
+    "build": "rollup -c ./config/rollup.production.js"
   }
 }

@@ -6,7 +6,7 @@ specifiers:
   '@axel669/rollup-html-input': ^0.1.2
   '@rollup/plugin-commonjs': ^17.0.0
   '@rollup/plugin-node-resolve': ^11.0.1
-  '@rollup/plugin-terser': ^0.2.0
+  '@rollup/plugin-terser': ^0.4.0
   rollup: ^2.78.1
   rollup-plugin-delete: ^2.0.0
   rollup-plugin-svelte: ^6.1.1
@@ -15,7 +15,7 @@ specifiers:
   svelte-range-slider-pips: ^2.0.3
 
 dependencies:
-  svelte: 3.55.1
+  svelte: 3.56.0
   svelte-doric: 1.9.1
   svelte-range-slider-pips: 2.1.1
 
@@ -25,10 +25,10 @@ devDependencies:
   '@axel669/rollup-html-input': 0.1.2
   '@rollup/plugin-commonjs': 17.1.0_rollup@2.79.1
   '@rollup/plugin-node-resolve': 11.2.1_rollup@2.79.1
-  '@rollup/plugin-terser': 0.2.1_rollup@2.79.1
+  '@rollup/plugin-terser': 0.4.0_rollup@2.79.1
   rollup: 2.79.1
   rollup-plugin-delete: 2.0.0
-  rollup-plugin-svelte: 6.1.1_wqqnxzvosiw4srqlri2xb7asou
+  rollup-plugin-svelte: 6.1.1_g5cyba3cjbcyzvqphmo4xwswfe
 
 packages:
 
@@ -132,14 +132,14 @@ packages:
       '@rollup/pluginutils': 3.1.0_rollup@2.79.1
       '@types/resolve': 1.17.1
       builtin-modules: 3.3.0
-      deepmerge: 4.2.2
+      deepmerge: 4.3.0
       is-module: 1.0.0
       resolve: 1.22.1
       rollup: 2.79.1
     dev: true
 
-  /@rollup/plugin-terser/0.2.1_rollup@2.79.1:
-    resolution: {integrity: sha512-hV52c8Oo6/cXZZxVVoRNBb4zh+EKSHS4I1sedWV5pf0O+hTLSkrf6w86/V0AZutYtwBguB6HLKwz89WDBfwGOA==}
+  /@rollup/plugin-terser/0.4.0_rollup@2.79.1:
+    resolution: {integrity: sha512-Ipcf3LPNerey1q9ZMjiaWHlNPEHNU/B5/uh9zXLltfEQ1lVSLLeZSgAtTPWGyw8Ip1guOeq+mDtdOlEj/wNxQw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^2.x || ^3.x
@@ -148,9 +148,9 @@ packages:
         optional: true
     dependencies:
       rollup: 2.79.1
-      serialize-javascript: 6.0.0
+      serialize-javascript: 6.0.1
       smob: 0.0.6
-      terser: 5.16.1
+      terser: 5.16.6
     dev: true
 
   /@rollup/pluginutils/3.1.0_rollup@2.79.1:
@@ -177,25 +177,25 @@ packages:
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
     dependencies:
       '@types/minimatch': 5.1.2
-      '@types/node': 18.11.18
+      '@types/node': 18.15.0
     dev: true
 
   /@types/minimatch/5.1.2:
     resolution: {integrity: sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==}
     dev: true
 
-  /@types/node/18.11.18:
-    resolution: {integrity: sha512-DHQpWGjyQKSHj3ebjFI/wRKcqQcdR+MoFBygntYOZytCqNfkd2ZC4ARDJ2DQqhjH5p85Nnd3jhUJIXrszFX/JA==}
+  /@types/node/18.15.0:
+    resolution: {integrity: sha512-z6nr0TTEOBGkzLGmbypWOGnpSpSIBorEhC4L+4HeQ2iezKCi4f77kyslRwvHeNitymGQ+oFyIWGP96l/DPSV9w==}
     dev: true
 
   /@types/resolve/1.17.1:
     resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==}
     dependencies:
-      '@types/node': 18.11.18
+      '@types/node': 18.15.0
     dev: true
 
-  /acorn/8.8.1:
-    resolution: {integrity: sha512-7zFpHzhnqYKrkYdUjF1HI1bzd0VygEGX8lFk4k5zVMqHEoES+P+7TKI+EvLO9WVMJ8eekdO0aDEK044xTXwPPA==}
+  /acorn/8.8.2:
+    resolution: {integrity: sha512-xjIYgE8HBrkpd/sJqOGNspf8uHG+NOHGOw6a/Urj8taM2EXfdNAH2oFcPeIFfsv3+kz/mJrS5VuMqbNLjCa2vw==}
     engines: {node: '>=0.4.0'}
     hasBin: true
     dev: true
@@ -276,8 +276,8 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
-  /deepmerge/4.2.2:
-    resolution: {integrity: sha512-FJ3UgI4gIl+PHZm53knsuSFpE+nESMr7M4v9QcgB7S63Kj/6WqMiFQJpBBYz1Pt+66bZpP3Q7Lye0Oo9MPKEdg==}
+  /deepmerge/4.3.0:
+    resolution: {integrity: sha512-z2wJZXrmeHdvYJp/Ux55wIjqo81G5Bp4c+oELTW+7ar6SogWHajt5a9gO3s3IDaGSAXjDk0vlQKN3rms8ab3og==}
     engines: {node: '>=0.10.0'}
     dev: true
 
@@ -623,7 +623,7 @@ packages:
       del: 5.1.0
     dev: true
 
-  /rollup-plugin-svelte/6.1.1_wqqnxzvosiw4srqlri2xb7asou:
+  /rollup-plugin-svelte/6.1.1_g5cyba3cjbcyzvqphmo4xwswfe:
     resolution: {integrity: sha512-ijnm0pH1ScrY4uxwaNXBpNVejVzpL2769hIEbAlnqNUWZrffLspu5/k9/l/Wsj3NrEHLQ6wCKGagVJonyfN7ow==}
     peerDependencies:
       rollup: '>=1.19.2'
@@ -633,7 +633,7 @@ packages:
       rollup: 2.79.1
       rollup-pluginutils: 2.8.2
       sourcemap-codec: 1.4.8
-      svelte: 3.55.1
+      svelte: 3.56.0
     dev: true
 
   /rollup-pluginutils/2.8.2:
@@ -660,8 +660,8 @@ packages:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
     dev: true
 
-  /serialize-javascript/6.0.0:
-    resolution: {integrity: sha512-Qr3TosvguFt8ePWqsvRfrKyQXIiW+nGbYpy8XK24NQHE83caxWt+mIymTT19DGFbNWNLfEwsrkSmN64lVWB9ag==}
+  /serialize-javascript/6.0.1:
+    resolution: {integrity: sha512-owoXEFjWRllis8/M1Q+Cw5k8ZH40e3zhp/ovX+Xr/vi1qj6QesbyXXViFbpNvWvPNAD62SutwEXavefrLJWj7w==}
     dependencies:
       randombytes: 2.1.0
     dev: true
@@ -705,17 +705,17 @@ packages:
     resolution: {integrity: sha512-fLkhfnyEc4uMOCZCl8IPyC0e9lujrjqdSyrKw28Y8j99YUPZR+pHnSxde7PqhM0ST6eyO4ugh2nFnLZTIoG9aQ==}
     dev: false
 
-  /svelte/3.55.1:
-    resolution: {integrity: sha512-S+87/P0Ve67HxKkEV23iCdAh/SX1xiSfjF1HOglno/YTbSTW7RniICMCofWGdJJbdjw3S+0PfFb1JtGfTXE0oQ==}
+  /svelte/3.56.0:
+    resolution: {integrity: sha512-LvXiJbjdvJKwB/0CQyYpDX0q+hFqCyWmybzC2G6eK1tJJA/RSRCytTfNmjHv+RHlLuA70vWG7nXp6gbeErYvRA==}
     engines: {node: '>= 8'}
 
-  /terser/5.16.1:
-    resolution: {integrity: sha512-xvQfyfA1ayT0qdK47zskQgRZeWLoOQ8JQ6mIgRGVNwZKdQMU+5FkCBjmv4QjcrTzyZquRw2FVtlJSRUmMKQslw==}
+  /terser/5.16.6:
+    resolution: {integrity: sha512-IBZ+ZQIA9sMaXmRZCUMDjNH0D5AQQfdn4WUjHL0+1lF4TP1IHRJbrhb6fNaXWikrYQTSkb7SLxkeXAiy1p7mbg==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
       '@jridgewell/source-map': 0.3.2
-      acorn: 8.8.1
+      acorn: 8.8.2
       commander: 2.20.3
       source-map-support: 0.5.21
     dev: true
