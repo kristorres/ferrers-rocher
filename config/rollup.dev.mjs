@@ -9,8 +9,8 @@ import svelte from "rollup-plugin-svelte"
 export default {
     input: "src/index.html",
     output: {
-        file: `build/app-d${Date.now()}.js`,
-        format: "iife",
+        file: `build/app-d${Date.now()}.mjs`,
+        format: "esm",
     },
     plugins: [
         html(),
