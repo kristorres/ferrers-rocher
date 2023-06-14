@@ -1,19 +1,21 @@
 <script>
+    export let close
     export let input
 
     import {onDestroy, onMount} from "svelte"
     import {
         Alert,
         Button,
+        CircleSpinner as Spinner,
         Flex,
         Grid,
-        HexagonSpinner as Spinner,
         Icon,
+        Modal,
         Paper,
         Screen,
+        Text,
         Titlebar,
-        dialog,
-    } from "svelte-doric"
+    } from "@axel669/zephyr"
 
     import {
         animationSpeed,
@@ -29,7 +31,7 @@
     const latticeUnit = $dotRadius * 3
     const offset = $dotRadius * 2
 
-    let navigation = null
+    let alert = null
 
     let λ = null
     let ferrersDiagram = null
@@ -59,10 +61,6 @@
         await bijection.animate(ferrersDiagram)
     }
 
-    const close = () => {
-        navigation.close()
-    }
-
     onMount(
         () => {
             worker.postMessage(
@@ -73,15 +71,7 @@
                 const result = event.data
 
                 if (result.ok === false) {
-                    await dialog.show(
-                        Alert,
-                        {
-                            title: "Error",
-                            message: result.error,
-                            icon: "triangle-exclamation",
-                            persistent: true,
-                        }
-                    )
+                    await alert.show({title: "Error", message: result.error})
                     close()
                     return
                 }
@@ -110,13 +100,18 @@
     }
 </style>
 
-<Screen full bind:this={navigation}>
-    <Titlebar compact slot="title">
-        {bijection.name}
-    </Titlebar>
-    <Paper square layout={Flex} lcenter lpadding="0px">
+<Screen width="100%">
+    <Modal component={Alert} bind:this={alert} />
+
+    <Paper card square l-main="center" l-cross="center" l-pad="0px">
+        <Titlebar fill color="primary" slot="header">
+            <Text title slot="title">
+                {bijection.name}
+            </Text>
+        </Titlebar>
+
         {#if ferrersDiagram === null}
-            <Spinner size={200} />
+            <Spinner size="200px" />
         {:else}
             <board>
                 {#each $ferrersDiagram as dot}
@@ -124,18 +119,21 @@
                 {/each}
             </board>
         {/if}
-    </Paper>
-    <Paper square flat layout={Grid} lcols="1fr 1fr" slot="footer">
-        <Button
-            color="secondary"
-            on:click={startAnimation}
-            disabled={ferrersDiagram === null}
-        >
-            <Icon name="backward-fast" />
-            RESTART
-        </Button>
-        <Button color="secondary" on:click={close}>
-            CLOSE
-        </Button>
+
+        <Grid cols="1fr 1fr" slot="footer">
+            <Button
+                color="secondary"
+                on:click={startAnimation}
+                disabled={ferrersDiagram === null}
+            >
+                <Flex direction="row" pad="0px">
+                    <Icon name="player-track-prev-filled" />
+                    RESTART
+                </Flex>
+            </Button>
+            <Button color="secondary" on:click={close}>
+                CLOSE
+            </Button>
+        </Grid>
     </Paper>
 </Screen>

@@ -1,10 +1,17 @@
 <script>
     export let value
 
-    import {TextInput} from "svelte-doric"
+    import {Input} from "@axel669/zephyr"
 
-    const {type, ...otherProps} = $$props
+    const {min = null, max = null, ...otherProps} = $$props
     const validInputRegex = /^[-]?\d*$/
+
+    const minString = (min === null)
+        ? null
+        : `${min}`
+    const maxString = (max === null)
+        ? null
+        : `${max}`
 
     let rawInput = (value === null)
         ? ""
@@ -20,13 +27,27 @@
             return
         }
 
-        value = parseInt(rawInput)
+        const newValue = parseInt(rawInput)
+
+        if (
+            (min !== null && newValue < min)
+            || (max !== null && newValue > max)
+        ) {
+            value = null
+            return
+        }
+
+        value = newValue
     }
     $: updateValue()
 </script>
 
-<TextInput type="number" bind:value={rawInput} {...otherProps}>
-    <slot name="start">
-        <div />
-    </slot>
-</TextInput>
+<Input.Number
+    bind:value={rawInput}
+    min={minString}
+    max={maxString}
+    {...otherProps}
+>
+    <slot name="start" />
+    <slot name="end" />
+</Input.Number>

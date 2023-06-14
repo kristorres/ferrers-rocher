@@ -6,7 +6,7 @@
     export let step
     export let disabled = false
 
-    import {Flex} from "svelte-doric"
+    import {Flex} from "@axel669/zephyr"
     import RangeSlider from "svelte-range-slider-pips"
 
     let sliderValues = [value]
@@ -19,24 +19,24 @@
         --range-handle-inactive: var(--primary);
         --range-handle-focus: var(--primary);
         --range-handle-border: var(--primary);
-        --range-range: var(--primary-light);
-        --range-range-inactive: var(--primary-light);
-        --range-pip-active: var(--text-normal);
-        --range-pip-hover: var(--text-normal);
+        --range-range: var(--primary-ripple);
+        --range-range-inactive: var(--primary-ripple);
+        --range-pip-active: var(--text-color-normal);
+        --range-pip-hover: var(--text-color-normal);
     }
 
     slider-label {
         font-size: 12px;
         -webkit-text-size-adjust: none;
-        color: var(--primary);
+        color: var(--text-color-normal);
         user-select: none;
     }
     slider-label.disabled {
-        color: var(--text-secondary);
+        color: var(--text-color-secondary);
     }
 </style>
 
-<Flex gap="0px" padding="0px">
+<Flex cross="stretch" pad="0px">
     <slider-label class:disabled>{label}</slider-label>
 
     <RangeSlider
