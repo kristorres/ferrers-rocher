@@ -43,6 +43,7 @@
 </script>
 
 <Input.Number
+    style="font-size: var(--text-size-normal);"
     bind:value={rawInput}
     min={minString}
     max={maxString}

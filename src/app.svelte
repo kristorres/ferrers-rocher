@@ -122,6 +122,7 @@
                 <Button
                     fill
                     color="primary"
+                    t-sz="var(--text-size-normal)"
                     on:click={showBijection}
                     disabled={inputIsValid === false}
                 >
