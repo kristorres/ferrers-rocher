@@ -48,6 +48,23 @@
 </script>
 
 <style>
+    :global([ws-x~="theme[light]"]) {
+        --background: #daebfe;
+
+        --primary: #2774ae;
+        --primary-ripple: #2774ae60;
+        --secondary: #ffb81c;
+        --secondary-ripple: #ffb81c60;
+    }
+    :global([ws-x~="theme[dark]"]) {
+        --background: #003b5c;
+
+        --primary: #5dbfec;
+        --primary-ripple: #5dbfec60;
+        --secondary: #ffe47d;
+        --secondary-ripple: #ffe47d60;
+    }
+
     bijection-form {
         align-self: center;
         justify-self: center;
