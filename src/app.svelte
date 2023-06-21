@@ -49,6 +49,8 @@
 
 <style>
     :global([ws-x~="theme[light]"]) {
+        --font: Helvetica, Arial, sans-serif;
+
         --background: #daebfe;
 
         --primary: #2774ae;
@@ -57,6 +59,8 @@
         --secondary-ripple: #ffb81c60;
     }
     :global([ws-x~="theme[dark]"]) {
+        --font: Helvetica, Arial, sans-serif;
+
         --background: #003b5c;
 
         --primary: #5dbfec;
@@ -126,7 +130,7 @@
                     on:click={showBijection}
                     disabled={inputIsValid === false}
                 >
-                    SHOW BIJECTION
+                    Show Bijection
                 </Button>
             </Grid>
         </bijection-form>

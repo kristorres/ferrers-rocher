@@ -129,7 +129,7 @@
             >
                 <Flex direction="row" pad="0px">
                     <Icon name="player-track-prev-filled" />
-                    RESTART
+                    Restart
                 </Flex>
             </Button>
             <Button
@@ -137,7 +137,7 @@
                 t-sz="var(--text-size-normal)"
                 on:click={close}
             >
-                CLOSE
+                Close
             </Button>
         </Grid>
     </Paper>
