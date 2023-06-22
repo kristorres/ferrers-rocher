@@ -1,9 +1,11 @@
 <script context="module">
     import Storage from "$/state/storage.mjs"
 
-    const animationSpeed = Storage("animationSpeed", 1)
-    const dotRadius = Storage("dotRadius", 4)
-    const maxIterationCount = Storage("maxIterationCount", 1e4)
+    const appID = "ferrers-rocher"
+
+    const animationSpeed = Storage(`${appID}.animationSpeed`, 1)
+    const dotRadius = Storage(`${appID}.dotRadius`, 4)
+    const maxIterationCount = Storage(`${appID}.maxIterationCount`, 1e4)
     const theme = Storage("theme", "light")
 
     export {
