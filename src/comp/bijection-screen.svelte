@@ -123,7 +123,7 @@
         <Grid cols="1fr 1fr" slot="footer">
             <Button
                 color="secondary"
-                t-sz="var(--text-size-normal)"
+                t-sz="&text-size-normal"
                 on:click={startAnimation}
                 disabled={ferrersDiagram === null}
             >
@@ -132,11 +132,7 @@
                     Restart
                 </Flex>
             </Button>
-            <Button
-                color="secondary"
-                t-sz="var(--text-size-normal)"
-                on:click={close}
-            >
+            <Button color="secondary" t-sz="&text-size-normal" on:click={close}>
                 Close
             </Button>
         </Grid>

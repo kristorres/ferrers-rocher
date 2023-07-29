@@ -6,7 +6,7 @@
     const animationSpeed = Storage(`${appID}.animationSpeed`, 1)
     const dotRadius = Storage(`${appID}.dotRadius`, 4)
     const maxIterationCount = Storage(`${appID}.maxIterationCount`, 1e4)
-    const theme = Storage("theme", "light")
+    const theme = Storage(`${appID}.theme`, "light")
 
     export {
         animationSpeed,
@@ -64,7 +64,7 @@
                 Settings
             </Text>
 
-            <Button color={false} on:click={close} slot="action">
+            <Button color={false} m="4px" on:click={close} slot="action">
                 <Icon name="x" t-sz="24px" />
             </Button>
         </Titlebar>

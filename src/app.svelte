@@ -95,7 +95,12 @@
                 Ferrers Rocher
             </Text>
 
-            <Button color={false} on:click={settings.show} slot="action">
+            <Button
+                color={false}
+                m="4px"
+                on:click={settings.show}
+                slot="action"
+            >
                 <Icon name="settings" t-sz="24px" />
             </Button>
         </Titlebar>
@@ -126,7 +131,7 @@
                 <Button
                     fill
                     color="primary"
-                    t-sz="var(--text-size-normal)"
+                    t-sz="&text-size-normal"
                     on:click={showBijection}
                     disabled={inputIsValid === false}
                 >

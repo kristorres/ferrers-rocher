@@ -1,16 +1,14 @@
+import store from "@axel669/json-storage"
 import {writable} from "svelte/store"
 
-const Storage = (key, defaultValue) => {
-    const stringValue = localStorage[key]
-    const value = (stringValue === undefined)
-        ? defaultValue
-        : JSON.parse(stringValue)
+const local = store(localStorage)
 
-    const store = writable(value)
+const Storage = (key, defaultValue) => {
+    const store = writable(local[key] ?? defaultValue)
 
     store.subscribe(
         (newValue) => {
-            localStorage[key] = JSON.stringify(newValue)
+            local[key] = newValue
         }
     )
 
