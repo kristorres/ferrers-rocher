@@ -61,10 +61,8 @@ Building and Running Locally
 git clone https://github.com/kristorres/ferrers-rocher
 cd ferrers-rocher
 pnpm install
-pnpm build:dev
+pnpm build/dev
 ```
-
-Now go to *build/index.html* on your favorite browser to view the web app. 😎
 
 Research Papers
 ---------------
