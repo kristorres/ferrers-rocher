@@ -1,20 +1,17 @@
 <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://kristorres.github.io/ferrers-rocher/images/bijection-banner-dark.png"/>
-    <source media="(prefers-color-scheme: light)" srcset="https://kristorres.github.io/ferrers-rocher/images/bijection-banner.png"/>
-    <img src="https://kristorres.github.io/ferrers-rocher/images/bijection-banner.png" alt="A bijection between partitions with distinct odd parts and self-conjugate partitions."/>
+    <source media="(prefers-color-scheme: dark)" srcset="/images/bijection-banner-dark.png" />
+    <source media="(prefers-color-scheme: light)" srcset="/images/bijection-banner.png" />
+    <img src="/images/bijection-banner.png" alt="A bijection between partitions with distinct odd parts and self-conjugate partitions." />
 </picture>
 
 Ferrers Rocher
 ==============
 
 <p>
-    <img src="https://img.shields.io/badge/Svelte-3-orange?style=for-the-badge&logo=svelte"/>
-    <a href="https://twitter.com/ohayoukris">
-        <img src="https://img.shields.io/badge/Contact-@ohayoukris-lightgrey?style=for-the-badge&logo=twitter">
-    </a>
+    <img src="https://img.shields.io/badge/Svelte-3-ff3e00?style=for-the-badge&logo=svelte" alt="" />
 </p>
 
-![The Ferrers Rocher web app animating the Sylvester/Glaisher bijection.](/static/images/sylvester-glaisher-bijection-example.gif)
+![The Ferrers Rocher web app animating the Sylvester/Glaisher bijection.](/images/sylvester-glaisher-bijection-example.gif)
 
 **Ferrers Rocher** is an interactive web app where users can animate bijections
 of integer partitions with Ferrers diagrams. The web app is primarily aimed at
