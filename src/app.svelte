@@ -1,10 +1,9 @@
 <script>
     import {
-        Button,
+        EntryButton,
         Flex,
         Grid,
         Icon,
-        Modal,
         Paper,
         Screen,
         Select,
@@ -29,44 +28,30 @@
         }
     )
 
-    let bijectionScreen = null
-    let settings = null
-
     let size = null
     let bijection = null
 
     $: inputIsValid = (size > 0 && bijection?.allowPartitionSize(size) === true)
-
-    const showBijection = () => {
-        bijectionScreen.show({
-            input: {
-                n: size,
-                bijection,
-            },
-        })
-    }
 </script>
 
 <style>
     :global([ws-x~="theme[light]"]) {
-        --font: Helvetica, Arial, sans-serif;
-
-        --background: #daebfe;
-
         --primary: #2774ae;
         --primary-ripple: #2774ae60;
         --secondary: #ffb81c;
         --secondary-ripple: #ffb81c60;
+        --background: #daebfe;
+
+        --font: Helvetica, Arial, sans-serif;
     }
     :global([ws-x~="theme[dark]"]) {
-        --font: Helvetica, Arial, sans-serif;
-
-        --background: #003b5c;
-
         --primary: #5dbfec;
         --primary-ripple: #5dbfec60;
         --secondary: #ffe47d;
         --secondary-ripple: #ffe47d60;
+        --background: #003b5c;
+
+        --font: Helvetica, Arial, sans-serif;
     }
 
     bijection-form {
@@ -79,9 +64,6 @@
 <svelte:body use:wsx={{theme: $theme, "@app": true}} />
 
 <Screen>
-    <Modal component={BijectionScreen} bind:this={bijectionScreen} />
-    <Modal component={Settings} bind:this={settings} />
-
     <Paper
         card
         square
@@ -95,14 +77,9 @@
                 Ferrers Rocher
             </Text>
 
-            <Button
-                color={false}
-                m="4px"
-                on:click={settings.show}
-                slot="action"
-            >
-                <Icon name="settings" t-sz="24px" />
-            </Button>
+            <EntryButton compact m="4px" component={Settings} slot="action">
+                <Icon name="settings" t-sz="20px" />
+            </EntryButton>
         </Titlebar>
 
         <bijection-form>
@@ -122,21 +99,22 @@
                     bind:value={bijection}
                     options={bijectionOptions}
                 />
-                <div use:wsx={{h: "36px"}}>
+                <div ws-x="h[36px]">
                     {#if bijection !== null}
                         <Text>{bijection.description}</Text>
                     {/if}
                 </div>
 
-                <Button
+                <EntryButton
                     fill
                     color="primary"
                     t-sz="&text-size-normal"
-                    on:click={showBijection}
+                    component={BijectionScreen}
+                    props={{input: {n: size, bijection}}}
                     disabled={inputIsValid === false}
                 >
                     Show Bijection
-                </Button>
+                </EntryButton>
             </Grid>
         </bijection-form>
     </Paper>

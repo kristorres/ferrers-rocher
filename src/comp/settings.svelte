@@ -6,7 +6,7 @@
     const animationSpeed = Storage(`${appID}.animationSpeed`, 1)
     const dotRadius = Storage(`${appID}.dotRadius`, 4)
     const maxIterationCount = Storage(`${appID}.maxIterationCount`, 1e4)
-    const theme = Storage(`${appID}.theme`, "light")
+    const theme = Storage("theme", "light")
 
     export {
         animationSpeed,
@@ -33,7 +33,7 @@
 
     const numberFormatter = new Intl.NumberFormat("en-US")
 
-    const themes = ["light", "dark", "tron"]
+    const themes = ["light", "dark"]
     const maxIterationCounts = [1e3, 5e3, 1e4, 5e4, 1e5]
 
     const capitalize = (string) => {
@@ -64,8 +64,8 @@
                 Settings
             </Text>
 
-            <Button color={false} m="4px" on:click={close} slot="action">
-                <Icon name="x" t-sz="24px" />
+            <Button compact m="4px" on:click={close} slot="action">
+                <Icon name="x" t-sz="20px" />
             </Button>
         </Titlebar>
 

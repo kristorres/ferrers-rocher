@@ -29,6 +29,7 @@
         font-size: 12px;
         -webkit-text-size-adjust: none;
         color: var(--text-color-normal);
+        -webkit-user-select: none;
         user-select: none;
     }
     slider-label.disabled {
