@@ -6,7 +6,7 @@
     const animationSpeed = Storage(`${appID}.animationSpeed`, 1)
     const dotRadius = Storage(`${appID}.dotRadius`, 4)
     const maxIterationCount = Storage(`${appID}.maxIterationCount`, 1e4)
-    const theme = Storage("theme", "light")
+    const theme = Storage(`${appID}.theme`, "light")
 
     export {
         animationSpeed,
@@ -33,7 +33,7 @@
 
     const numberFormatter = new Intl.NumberFormat("en-US")
 
-    const themes = ["light", "dark"]
+    const themes = ["light", "dark", "tron"]
     const maxIterationCounts = [1e3, 5e3, 1e4, 5e4, 1e5]
 
     const capitalize = (string) => {

@@ -9,7 +9,7 @@ const Color = (red, green, blue, alpha = 1) => {
 const Palette = (alpha = 1) => {
     const color = (red, green, blue) => Color(red, green, blue, alpha)
 
-    if (local.theme === "light") {
+    if (local["ferrers-rocher.theme"] === "light") {
         return {
             red: color(255, 49, 38),
             orange: color(245, 139, 0),
