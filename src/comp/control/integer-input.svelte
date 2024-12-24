@@ -3,7 +3,7 @@
 
     import {Input} from "@axel669/zephyr"
 
-    const {min = null, max = null, ...otherProps} = $$props
+    const {min = null, max = null, placeholder = null, ...otherProps} = $$props
     const validInputRegex = /^[-]?\d*$/
 
     const minString = (min === null)
@@ -42,13 +42,15 @@
     $: updateValue()
 </script>
 
-<Input.Number
-    style="font-size: var(--text-size-normal);"
+<Input
+    type="number"
     bind:value={rawInput}
-    min={minString}
-    max={maxString}
     {...otherProps}
+    i-ws-x="[t.sz @text-size-normal]"
+    i-min={minString}
+    i-max={maxString}
+    i-placeholder={placeholder}
 >
     <slot name="start" />
     <slot name="end" />
-</Input.Number>
+</Input>

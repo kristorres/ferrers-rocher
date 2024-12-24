@@ -1,5 +1,7 @@
+<svelte:options immutable />
+
 <script context="module">
-    import Storage from "$/state/storage.mjs"
+    import Storage from "$state/storage.mjs"
 
     const appID = "ferrers-rocher"
 
@@ -21,7 +23,6 @@
 
     import {
         Button,
-        Icon,
         Paper,
         Screen,
         Select,
@@ -30,6 +31,7 @@
     } from "@axel669/zephyr"
 
     import Slider from "./control/slider.svelte"
+    import Icon from "./icon.svelte"
 
     const numberFormatter = new Intl.NumberFormat("en-US")
 
@@ -58,14 +60,14 @@
 </script>
 
 <Screen>
-    <Paper card square scrollable l-gap="16px" l-pad="16px">
-        <Titlebar fill color="primary" slot="header">
-            <Text title slot="title">
+    <Paper card square scrollable l-gap="16px" l-p="16px">
+        <Titlebar fill color="@primary" slot="header">
+            <Text title t.wt="700" slot="title">
                 Settings
             </Text>
 
-            <Button compact m="4px" on:click={close} slot="action">
-                <Icon name="x" t-sz="20px" />
+            <Button compact ground m="4px" on:click={close} slot="action">
+                <Icon name="x" t.sz="20px" />
             </Button>
         </Titlebar>
 

@@ -15,16 +15,6 @@
 </script>
 
 <style>
-    :global(body) {
-        --range-handle-inactive: var(--primary);
-        --range-handle-focus: var(--primary);
-        --range-handle-border: var(--primary);
-        --range-range: var(--primary-ripple);
-        --range-range-inactive: var(--primary-ripple);
-        --range-pip-active: var(--text-color-normal);
-        --range-pip-hover: var(--text-color-normal);
-    }
-
     slider-label {
         font-size: 12px;
         -webkit-text-size-adjust: none;
@@ -37,7 +27,7 @@
     }
 </style>
 
-<Flex cross="stretch" pad="0px">
+<Flex cross="stretch" p="0px">
     <slider-label class:disabled>{label}</slider-label>
 
     <RangeSlider

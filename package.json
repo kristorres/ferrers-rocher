@@ -1,26 +1,28 @@
 {
-  "name": "ferrers-rocher",
-  "version": "1.0.0",
-  "private": true,
-  "dependencies": {
-    "@axel669/json-storage": "^0.1.1",
-    "@axel669/zephyr": "^0.1.17",
-    "svelte": "^3.59.1",
-    "svelte-range-slider-pips": "^2.2.3"
-  },
-  "devDependencies": {
-    "@axel669/rollup-copy-static": "^0.1.2",
-    "@axel669/rollup-dollar-path": "^0.1.0",
-    "@axel669/rollup-html-input": "^0.1.2",
-    "@rollup/plugin-commonjs": "^24.1.0",
-    "@rollup/plugin-node-resolve": "^15.0.2",
-    "@rollup/plugin-terser": "^0.4.4",
-    "rollup": "^3.23.0",
-    "rollup-plugin-delete": "^2.0.0",
-    "rollup-plugin-svelte": "^6.1.1"
-  },
-  "scripts": {
-    "build/dev": "rollup -c ./config/rollup.dev.mjs",
-    "build": "rollup -c ./config/rollup.production.mjs"
-  }
+    "name": "ferrers-rocher",
+    "version": "1.0.0",
+    "private": true,
+    "type": "commonjs",
+    "dependencies": {
+        "@axel669/json-storage": "^0.1.1",
+        "@axel669/zephyr": "^0.4.7",
+        "svelte": "^3.59.2",
+        "svelte-range-slider-pips": "^2.3.1"
+    },
+    "devDependencies": {
+        "@axel669/rollup-copy-static": "^0.2.0",
+        "@axel669/rollup-dollar-path": "^0.1.0",
+        "@rollup/plugin-commonjs": "^24.1.0",
+        "@rollup/plugin-html": "^1.1.0",
+        "@rollup/plugin-node-resolve": "^15.0.2",
+        "@rollup/plugin-terser": "^0.4.4",
+        "rollup": "^3.23.0",
+        "rollup-plugin-delete": "^2.1.0",
+        "rollup-plugin-svelte": "^7.2.2",
+        "wrangler": "^3.99.0"
+    },
+    "scripts": {
+        "build": "rollup -c",
+        "preview": "wrangler pages dev --port 2131"
+    }
 }

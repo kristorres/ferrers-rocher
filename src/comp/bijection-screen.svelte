@@ -1,28 +1,31 @@
+<svelte:options immutable />
+
 <script>
     export let close
     export let input
 
-    import {onDestroy, onMount} from "svelte"
     import {
         Alert,
         Button,
         CircleSpinner as Spinner,
         Flex,
         Grid,
-        Icon,
         Modal,
         Paper,
         Screen,
         Text,
         Titlebar,
     } from "@axel669/zephyr"
+    import {onDestroy, onMount} from "svelte"
 
+    import FerrersDiagram from "$state/ferrers-diagram.mjs"
+
+    import Icon from "./icon.svelte"
     import {
         animationSpeed,
         dotRadius,
         maxIterationCount,
     } from "./settings.svelte"
-    import FerrersDiagram from "$/state/ferrers-diagram.mjs"
 
     const {n, bijection} = input
 
@@ -103,9 +106,9 @@
 <Screen width="100%">
     <Modal component={Alert} bind:this={alert} />
 
-    <Paper card square l-main="center" l-cross="center" l-pad="0px">
-        <Titlebar fill color="primary" slot="header">
-            <Text title slot="title">
+    <Paper card square l-main="center" l-cross="center" l-p="0px">
+        <Titlebar fill color="@primary" slot="header">
+            <Text title t.wt="700" no-select slot="title">
                 {bijection.name}
             </Text>
         </Titlebar>
@@ -122,18 +125,24 @@
 
         <Grid cols="1fr 1fr" slot="footer">
             <Button
-                color="secondary"
-                t-sz="&text-size-normal"
+                ground
+                color="@secondary"
+                t.sz="@text-size-normal"
                 on:click={startAnimation}
                 disabled={ferrersDiagram === null}
             >
-                <Flex direction="row" pad="0px">
+                <Flex direction="row" p="0px">
                     <Icon name="player-track-prev-filled" />
-                    Restart
+                    RESTART
                 </Flex>
             </Button>
-            <Button color="secondary" t-sz="&text-size-normal" on:click={close}>
-                Close
+            <Button
+                ground
+                color="@secondary"
+                t.sz="@text-size-normal"
+                on:click={close}
+            >
+                CLOSE
             </Button>
         </Grid>
     </Paper>

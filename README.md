@@ -61,7 +61,8 @@ Building and Running Locally
 git clone https://github.com/kristorres/ferrers-rocher
 cd ferrers-rocher
 pnpm install
-pnpm build/dev
+pnpm build
+pnpm preview
 ```
 
 Research Papers
